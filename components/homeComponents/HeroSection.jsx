@@ -9,7 +9,7 @@ import { TypeAnimation } from 'react-type-animation';
 const HeroSection = () => {
   return (
     <>
-      <div className='flex gap-[32px] flex-wrap lg:flex-nowrap'>
+      <div className='pt-8 md-pt-0 flex gap-[32px] flex-wrap lg:flex-nowrap'>
 
         <div className='w-full lg:w-1/2'>
           <div className='flex flex-col justify-center items-center lg:items-start gap-4 h-full'>
