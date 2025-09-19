@@ -33,7 +33,7 @@ const HeroSection = () => {
               />
 
             </h1>
-            <p className='text-lg text-center lg:text-left max-w-2xl'>A passionate developer specializing in building exceptional digital experiences. Currently, I'm focused on developing responsive web applications.</p>
+            <p className='text-sm lg:text-lg text-center lg:text-left max-w-2xl px-4'>A passionate developer specializing in building exceptional digital experiences. Currently, I'm focused on developing responsive web applications.</p>
             <div className='flex gap-4'>
               <BlueFilledBtn title='Hire Me' url='/contact' />
               <BlueOutlineBtn title='Download CV' url='/cv' />
