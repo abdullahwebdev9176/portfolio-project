@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
+import BlueFilledBtn from '../Buttons/BlueFilledBtn'
+import BlueOutlineBtn from '../Buttons/BlueOutlineBtn'
 
 const HeroSection = () => {
   return (
@@ -33,8 +35,8 @@ const HeroSection = () => {
             </h1>
             <p className='text-lg text-center lg:text-left max-w-2xl'>A passionate developer specializing in building exceptional digital experiences. Currently, I'm focused on developing responsive web applications.</p>
             <div className='flex gap-4'>
-              <Link href="#contact" className='px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition focus:outline-none'>Hire Me</Link>
-              <Link href="#projects" className='px-6 py-3 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition focus:outline-none'>Download CV</Link>
+              <BlueFilledBtn title='Hire Me' url='/contact' />
+              <BlueOutlineBtn title='Download CV' url='/cv' />
             </div>
           </div>
         </div>

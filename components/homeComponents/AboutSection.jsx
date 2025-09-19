@@ -1,6 +1,7 @@
 import { assets } from '@/Assets/data'
 import Image from 'next/image'
 import React from 'react'
+import BlueFilledBtn from '../Buttons/BlueFilledBtn'
 
 const AboutSection = () => {
     return (
@@ -11,10 +12,10 @@ const AboutSection = () => {
                 </div>
                 <div className='w-1/2'>
                     <div className='flex flex-col justify-center h-full p-8'>
-                        <h1 className='text-4xl font-bold mb-4'>About Us</h1>
-                        <p className='text-lg mb-4'>We are a leading company in our industry, committed to providing top-notch services and solutions to our clients. Our team of experts works tirelessly to ensure customer satisfaction and deliver exceptional results.</p>
-                        <p className='text-lg mb-4'>With years of experience and a passion for innovation, we strive to stay ahead of the curve and continuously improve our offerings. Our mission is to empower businesses and individuals alike, helping them achieve their goals and reach new heights.</p>
-                        <button className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300'>Learn More</button>
+                        <h1 className='text-4xl font-bold mb-4'>About Me</h1>
+                        <p className='text-lg mb-4'>I am a passionate developer with a strong background in creating dynamic and responsive web applications. My expertise lies in translating design concepts into functional user interfaces, ensuring a seamless user experience.</p>
+
+                        <BlueFilledBtn title='Learn More' url='/about' />
                     </div>
                 </div>
             </div>
