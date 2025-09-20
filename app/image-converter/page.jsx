@@ -27,7 +27,7 @@ const ImageConverter = () => {
   const [isDragOver, setIsDragOver] = useState(false) // Visual feedback for drag-and-drop
   const [error, setError] = useState('') // Error messages
   const [success, setSuccess] = useState('') // Success messages
-  
+
   // References to the hidden file input elements
   const fileInputRef = useRef(null) // For multiple file selection
 
@@ -37,7 +37,7 @@ const ImageConverter = () => {
    */
   const supportedFormats = [
     'image/jpeg',
-    'image/jpg', 
+    'image/jpg',
     'image/png',
     'image/webp',
     'image/gif',
@@ -68,7 +68,7 @@ const ImageConverter = () => {
 
     // Convert FileList to Array for easier manipulation
     const fileArray = Array.from(files)
-    
+
     // Filter and validate image files
     const validFiles = []
     const invalidFiles = []
@@ -89,10 +89,10 @@ const ImageConverter = () => {
     if (invalidFiles.length > 0) {
       setError(`Invalid file types: ${invalidFiles.join(', ')}. Please select only image files.`)
     }
-    
+
     if (oversizedFiles.length > 0) {
-      setError(prevError => 
-        prevError 
+      setError(prevError =>
+        prevError
           ? `${prevError} Files too large (>10MB): ${oversizedFiles.join(', ')}`
           : `Files too large (>10MB): ${oversizedFiles.join(', ')}`
       )
@@ -141,7 +141,7 @@ const ImageConverter = () => {
   const handleDrop = (e) => {
     e.preventDefault()
     setIsDragOver(false)
-    
+
     const files = e.dataTransfer.files
     if (files.length > 0) {
       handleFileSelect(files)
@@ -190,15 +190,15 @@ const ImageConverter = () => {
     try {
       // Process images in batches to avoid overwhelming the server
       const batchSize = 3 // Process 3 images at a time
-      
+
       for (let i = 0; i < selectedFiles.length; i += batchSize) {
         const batch = selectedFiles.slice(i, i + batchSize)
-        
+
         // Process current batch in parallel
         const batchPromises = batch.map(async (file, batchIndex) => {
           let retryCount = 0
           const maxRetries = 2
-          
+
           while (retryCount <= maxRetries) {
             try {
               const formData = new FormData()
@@ -233,25 +233,25 @@ const ImageConverter = () => {
               }
 
               const blob = await response.blob()
-              
+
               return {
                 originalName: file.name,
                 convertedBlob: blob,
                 convertedUrl: URL.createObjectURL(blob),
                 success: true
               }
-              
+
             } catch (error) {
               console.error(`Error converting ${file.name} (attempt ${retryCount + 1}):`, error)
-              
+
               // Check if it's a timeout or network error that might be retryable
-              const isRetryableError = error.name === 'AbortError' || 
-                                     error.message.includes('timeout') ||
-                                     error.message.includes('network') ||
-                                     error.message.includes('502') ||
-                                     error.message.includes('503') ||
-                                     error.message.includes('504')
-              
+              const isRetryableError = error.name === 'AbortError' ||
+                error.message.includes('timeout') ||
+                error.message.includes('network') ||
+                error.message.includes('502') ||
+                error.message.includes('503') ||
+                error.message.includes('504')
+
               if (isRetryableError && retryCount < maxRetries) {
                 retryCount++
                 console.log(`🔄 Retrying ${file.name} (attempt ${retryCount + 1}/${maxRetries + 1})`)
@@ -259,7 +259,7 @@ const ImageConverter = () => {
                 await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000))
                 continue
               }
-              
+
               // If all retries failed or non-retryable error
               return {
                 originalName: file.name,
@@ -272,7 +272,7 @@ const ImageConverter = () => {
 
         // Wait for current batch to complete
         const batchResults = await Promise.all(batchPromises)
-        
+
         // Separate successful and failed conversions
         batchResults.forEach(result => {
           if (result.success) {
@@ -316,11 +316,11 @@ const ImageConverter = () => {
   const handleSingleDownload = (convertedImage) => {
     const link = document.createElement('a')
     link.href = convertedImage.convertedUrl
-    
+
     // Generate filename with new extension
     const originalName = convertedImage.originalName.split('.').slice(0, -1).join('.')
     link.download = `${originalName}_converted.${targetFormat}`
-    
+
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -339,7 +339,7 @@ const ImageConverter = () => {
     try {
       // Create a new JSZip instance
       const zip = new JSZip()
-      
+
       // Create a folder inside the ZIP for organization
       const imagesFolder = zip.folder("converted_images")
 
@@ -348,27 +348,27 @@ const ImageConverter = () => {
         // Generate filename with new extension
         const originalName = convertedImage.originalName.split('.').slice(0, -1).join('.')
         const fileName = `${originalName}_converted.${targetFormat}`
-        
+
         // Add the blob data to the ZIP folder
         imagesFolder.file(fileName, convertedImage.convertedBlob)
       }
 
       // Generate the ZIP file
-      const zipBlob = await zip.generateAsync({type: "blob"})
-      
+      const zipBlob = await zip.generateAsync({ type: "blob" })
+
       // Create download link for the ZIP file
       const zipUrl = URL.createObjectURL(zipBlob)
       const link = document.createElement('a')
       link.href = zipUrl
       link.download = `converted_images_${targetFormat}.zip`
-      
+
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-      
+
       // Clean up the URL
       URL.revokeObjectURL(zipUrl)
-      
+
     } catch (error) {
       setError('Failed to create ZIP file. Please try again.')
       console.error('ZIP creation error:', error)
@@ -385,7 +385,7 @@ const ImageConverter = () => {
     setError('')
     setSuccess('')
     setConversionProgress(0)
-    
+
     // Clear file inputs
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
@@ -409,29 +409,29 @@ const ImageConverter = () => {
             Image Converter
           </h1>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Convert multiple images to different formats quickly and easily. 
-            Upload any number of images and convert them to JPG or PNG format.
+            Convert multiple images to different formats quickly and easily.
+            Upload any number of images and convert them to JPG, PNG, or WebP format.
           </p>
         </div>
 
         {/* Main Converter Card */}
         <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 md:p-8">
-          
+
           {/* File Upload Section */}
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
               <Upload size={24} />
               Upload Images
             </h2>
-            
+
 
 
             {/* Main Drag and Drop Area */}
             <div
               className={`
                 border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300
-                ${isDragOver 
-                  ? 'border-blue-600 bg-blue-50' 
+                ${isDragOver
+                  ? 'border-blue-600 bg-blue-50'
                   : 'border-slate-300 hover:border-blue-600 hover:bg-slate-50'
                 }
               `}
@@ -442,7 +442,7 @@ const ImageConverter = () => {
             >
               <FileImage size={48} className="mx-auto text-slate-400 mb-4" />
               <p className="text-lg font-medium text-slate-700 mb-2">
-                {selectedFiles.length > 0 
+                {selectedFiles.length > 0
                   ? `${selectedFiles.length} image${selectedFiles.length > 1 ? 's' : ''} selected`
                   : 'Drop your images here or click to browse'
                 }
@@ -453,7 +453,7 @@ const ImageConverter = () => {
               <p className="text-xs text-slate-400">
                 Click to choose between uploading files or entire folders
               </p>
-              
+
               {/* Hidden file inputs */}
               <input
                 ref={fileInputRef}
@@ -497,15 +497,15 @@ const ImageConverter = () => {
               <Settings size={24} />
               Output Format
             </h2>
-            
+
             {/* Format Selection Radio Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {['jpg', 'png'].map((format) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {['webp', 'jpg', 'png'].map((format) => (
                 <label key={format} className="cursor-pointer">
                   <div className={`
                     p-4 rounded-lg border-2 transition-all duration-300
-                    ${targetFormat === format 
-                      ? 'border-blue-600 bg-blue-50' 
+                    ${targetFormat === format
+                      ? 'border-blue-600 bg-blue-50'
                       : 'border-slate-200 hover:border-blue-300'
                     }
                   `}>
@@ -522,6 +522,7 @@ const ImageConverter = () => {
                         {format}
                       </div>
                       <div className="text-sm text-slate-600 mt-1">
+                        {format === 'webp' && 'Best compression, modern format'}
                         {format === 'jpg' && 'Universal support, smaller files'}
                         {format === 'png' && 'Lossless quality, transparency support'}
                       </div>
@@ -567,7 +568,7 @@ const ImageConverter = () => {
           {isConverting && (
             <div className="mb-6">
               <div className="w-full bg-slate-200 rounded-full h-2">
-                <div 
+                <div
                   className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${conversionProgress}%` }}
                 ></div>
@@ -603,7 +604,7 @@ const ImageConverter = () => {
                 <Download size={24} />
                 Download Converted Images
               </h3>
-              
+
               <div className="mb-4">
                 <p className="text-slate-700">
                   <strong>{convertedImages.length}</strong> image{convertedImages.length > 1 ? 's' : ''} successfully converted to <strong>{targetFormat.toUpperCase()}</strong> format.
