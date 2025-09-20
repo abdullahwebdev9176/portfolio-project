@@ -539,7 +539,7 @@ const ImageConverter = () => {
               onClick={handleBatchConvert}
               disabled={selectedFiles.length === 0 || isConverting}
               className={`
-                flex-1 py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300
+                flex-1 py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 cursor-pointer
                 ${selectedFiles.length === 0 || isConverting
                   ? 'bg-foreground/40 cursor-not-allowed'
                   : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
@@ -558,7 +558,7 @@ const ImageConverter = () => {
 
             <button
               onClick={handleReset}
-              className="flex-1 sm:flex-none py-3 px-6 rounded-lg font-semibold text-foreground bg-foreground/10 hover:bg-foreground/20 transition-all duration-300"
+              className="flex-1 sm:flex-none py-3 px-6 rounded-lg font-semibold text-foreground bg-foreground/10 hover:bg-foreground/20 transition-all duration-300 cursor-pointer"
             >
               Reset
             </button>
@@ -623,7 +623,7 @@ const ImageConverter = () => {
                         <button
                           key={index}
                           onClick={() => handleSingleDownload(image)}
-                          className="flex items-center gap-2 py-2 px-3 bg-green-600 hover:bg-green-700 text-white rounded transition-all duration-300 text-sm"
+                          className="flex items-center gap-2 py-2 px-3 bg-green-600 hover:bg-green-700 text-white rounded transition-all duration-300 text-sm cursor-pointer"
                         >
                           <Download size={16} />
                           {image.originalName.split('.').slice(0, -1).join('.')}.{targetFormat}
@@ -637,7 +637,7 @@ const ImageConverter = () => {
                     <h4 className="font-medium text-foreground mb-3">Or download all as ZIP:</h4>
                     <button
                       onClick={handleZipDownload}
-                      className="flex items-center gap-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+                      className="cursor-pointer flex items-center gap-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
                     >
                       <Archive size={20} />
                       Download ZIP ({convertedImages.length} images)
