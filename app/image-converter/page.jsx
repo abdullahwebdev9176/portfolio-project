@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useRef } from 'react'
-import { Upload, Download, Settings, Image as ImageIcon, FileImage, AlertCircle, CheckCircle2, Folder, Files, Archive } from 'lucide-react'
+import { Upload, Download, Settings, Image as ImageIcon, FileImage, AlertCircle, CheckCircle2, Archive } from 'lucide-react'
 import JSZip from 'jszip'
 
 /**
@@ -30,7 +30,6 @@ const ImageConverter = () => {
   
   // References to the hidden file input elements
   const fileInputRef = useRef(null) // For multiple file selection
-  const folderInputRef = useRef(null) // For folder selection
 
   /**
    * Supported image formats for upload validation
@@ -116,6 +115,7 @@ const ImageConverter = () => {
     setSuccess(`${validFiles.length} image${validFiles.length > 1 ? 's' : ''} uploaded successfully!`)
   }
 
+
   /**
    * Handles the drag over event for drag-and-drop functionality
    * Prevents default behavior and shows visual feedback
@@ -157,31 +157,15 @@ const ImageConverter = () => {
     if (files && files.length > 0) {
       handleFileSelect(files)
     }
+    // Reset the input value to allow selecting the same files again if needed
+    e.target.value = ''
   }
 
   /**
-   * Handles folder input change event for folder upload
-   * Processes all files from the selected folder
-   */
-  const handleFolderInputChange = (e) => {
-    const files = e.target.files
-    if (files && files.length > 0) {
-      handleFileSelect(files)
-    }
-  }
-
-  /**
-   * Triggers the hidden multiple file input when the upload area is clicked
+   * Triggers the file input when the upload area is clicked
    */
   const handleUploadAreaClick = () => {
     fileInputRef.current?.click()
-  }
-
-  /**
-   * Triggers the hidden folder input for folder selection
-   */
-  const handleFolderUploadClick = () => {
-    folderInputRef.current?.click()
   }
 
   /**
@@ -364,9 +348,6 @@ const ImageConverter = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
-    if (folderInputRef.current) {
-      folderInputRef.current.value = ''
-    }
 
     // Clean up blob URLs to prevent memory leaks
     convertedImages.forEach(img => {
@@ -401,28 +382,7 @@ const ImageConverter = () => {
               Upload Images
             </h2>
             
-            {/* Upload Options */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {/* Multiple Files Upload */}
-              <button
-                onClick={handleUploadAreaClick}
-                className="p-4 border-2 border-dashed border-slate-300 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all duration-300 text-center"
-              >
-                <Files size={32} className="mx-auto text-slate-400 mb-2" />
-                <p className="font-medium text-slate-700">Upload Multiple Files</p>
-                <p className="text-sm text-slate-500">Select multiple images</p>
-              </button>
 
-              {/* Folder Upload */}
-              <button
-                onClick={handleFolderUploadClick}
-                className="p-4 border-2 border-dashed border-slate-300 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all duration-300 text-center"
-              >
-                <Folder size={32} className="mx-auto text-slate-400 mb-2" />
-                <p className="font-medium text-slate-700">Upload Folder</p>
-                <p className="text-sm text-slate-500">Select entire folder</p>
-              </button>
-            </div>
 
             {/* Main Drag and Drop Area */}
             <div
@@ -445,8 +405,11 @@ const ImageConverter = () => {
                   : 'Drop your images here or click to browse'
                 }
               </p>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 mb-2">
                 Supports: JPG, PNG, WebP, GIF, BMP, TIFF (Max 10MB per file, 100 files max)
+              </p>
+              <p className="text-xs text-slate-400">
+                Click to choose between uploading files or entire folders
               </p>
               
               {/* Hidden file inputs */}
@@ -456,15 +419,6 @@ const ImageConverter = () => {
                 accept="image/*"
                 multiple={true}
                 onChange={handleFileInputChange}
-                className="hidden"
-              />
-              <input
-                ref={folderInputRef}
-                type="file"
-                accept="image/*"
-                webkitdirectory=""
-                multiple={true}
-                onChange={handleFolderInputChange}
                 className="hidden"
               />
             </div>
