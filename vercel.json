@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "app/api/convert-image/route.js": {
+      "maxDuration": 60
+    }
+  },
+  "regions": ["iad1"],
+  "buildCommand": "npm run build"
+}
