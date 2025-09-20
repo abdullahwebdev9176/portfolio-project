@@ -1,5 +1,6 @@
 import AboutSection from "@/components/homeComponents/AboutSection";
 import HeroSection from "@/components/homeComponents/HeroSection";
+import OfferSection from "@/components/homeComponents/OfferSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <main className="container mx-auto">
         <HeroSection />
         <AboutSection />
+        <OfferSection />
       </main>
     </div>
   );
