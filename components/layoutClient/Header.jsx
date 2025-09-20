@@ -35,6 +35,9 @@ const Header = () => {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
+          <Link href="/image-converter" className="hover:underline">
+            Image Converter
+          </Link>
           <Link href="/contact" className="hover:underline">
             Contact
           </Link>
@@ -49,6 +52,9 @@ const Header = () => {
           </Link>
           <Link href="/projects" className="hover:underline" onClick={handleMenuToggle}>
             Projects
+          </Link>
+          <Link href="/image-converter" className="hover:underline" onClick={handleMenuToggle}>
+            Image Converter
           </Link>
           <Link href="/contact" className="hover:underline" onClick={handleMenuToggle}>
             Contact
