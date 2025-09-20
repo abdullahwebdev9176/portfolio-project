@@ -196,45 +196,76 @@ const ImageConverter = () => {
         
         // Process current batch in parallel
         const batchPromises = batch.map(async (file, batchIndex) => {
-          try {
-            const formData = new FormData()
-            formData.append('image', file)
-            formData.append('format', targetFormat)
+          let retryCount = 0
+          const maxRetries = 2
+          
+          while (retryCount <= maxRetries) {
+            try {
+              const formData = new FormData()
+              formData.append('image', file)
+              formData.append('format', targetFormat)
 
-            const response = await fetch('/api/convert-image', {
-              method: 'POST',
-              body: formData,
-            })
+              // Add timeout for production environments
+              const controller = new AbortController()
+              const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 seconds timeout
 
-            if (!response.ok) {
-              // Try to get more detailed error information
-              let errorMessage = `HTTP ${response.status}: ${response.statusText}`
-              try {
-                const errorData = await response.json()
-                if (errorData.error) {
-                  errorMessage = errorData.error
+              const response = await fetch('/api/convert-image', {
+                method: 'POST',
+                body: formData,
+                signal: controller.signal
+              })
+
+              clearTimeout(timeoutId)
+
+              if (!response.ok) {
+                // Try to get more detailed error information
+                let errorMessage = `HTTP ${response.status}: ${response.statusText}`
+                try {
+                  const errorData = await response.json()
+                  if (errorData.error) {
+                    errorMessage = errorData.error
+                  }
+                } catch (parseError) {
+                  // If we can't parse the error response, use the default message
+                  console.error('Error parsing error response:', parseError)
                 }
-              } catch (parseError) {
-                // If we can't parse the error response, use the default message
-                console.error('Error parsing error response:', parseError)
+                throw new Error(`Conversion failed for ${file.name}: ${errorMessage}`)
               }
-              throw new Error(`Conversion failed for ${file.name}: ${errorMessage}`)
-            }
 
-            const blob = await response.blob()
-            
-            return {
-              originalName: file.name,
-              convertedBlob: blob,
-              convertedUrl: URL.createObjectURL(blob),
-              success: true
-            }
-          } catch (error) {
-            console.error(`Error converting ${file.name}:`, error)
-            return {
-              originalName: file.name,
-              error: error.message,
-              success: false
+              const blob = await response.blob()
+              
+              return {
+                originalName: file.name,
+                convertedBlob: blob,
+                convertedUrl: URL.createObjectURL(blob),
+                success: true
+              }
+              
+            } catch (error) {
+              console.error(`Error converting ${file.name} (attempt ${retryCount + 1}):`, error)
+              
+              // Check if it's a timeout or network error that might be retryable
+              const isRetryableError = error.name === 'AbortError' || 
+                                     error.message.includes('timeout') ||
+                                     error.message.includes('network') ||
+                                     error.message.includes('502') ||
+                                     error.message.includes('503') ||
+                                     error.message.includes('504')
+              
+              if (isRetryableError && retryCount < maxRetries) {
+                retryCount++
+                console.log(`🔄 Retrying ${file.name} (attempt ${retryCount + 1}/${maxRetries + 1})`)
+                // Wait before retry (exponential backoff)
+                await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000))
+                continue
+              }
+              
+              // If all retries failed or non-retryable error
+              return {
+                originalName: file.name,
+                error: error.message,
+                success: false
+              }
             }
           }
         })
