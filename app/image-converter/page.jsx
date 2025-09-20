@@ -409,8 +409,8 @@ const ImageConverter = () => {
             Image Converter
           </h1>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Convert multiple images or entire folders to different formats quickly and easily. 
-            Upload any number of images and convert them to JPG, PNG, or WebP format.
+            Convert multiple images to different formats quickly and easily. 
+            Upload any number of images and convert them to JPG or PNG format.
           </p>
         </div>
 
@@ -499,8 +499,8 @@ const ImageConverter = () => {
             </h2>
             
             {/* Format Selection Radio Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {['webp', 'jpg', 'png'].map((format) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {['jpg', 'png'].map((format) => (
                 <label key={format} className="cursor-pointer">
                   <div className={`
                     p-4 rounded-lg border-2 transition-all duration-300
@@ -522,9 +522,8 @@ const ImageConverter = () => {
                         {format}
                       </div>
                       <div className="text-sm text-slate-600 mt-1">
-                        {format === 'webp' && 'Best compression'}
-                        {format === 'jpg' && 'Universal support'}
-                        {format === 'png' && 'Lossless quality'}
+                        {format === 'jpg' && 'Universal support, smaller files'}
+                        {format === 'png' && 'Lossless quality, transparency support'}
                       </div>
                     </div>
                   </div>

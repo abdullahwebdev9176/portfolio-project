@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import sharp from 'sharp'
 
 // Configure the API route for production
@@ -6,286 +6,119 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * Enhanced Image Conversion API Endpoint
+ * Image Conversion API Endpoint using @napi-rs/canvas
  * 
- * This API endpoint handles image conversion using the Sharp library.
- * It processes multipart/form-data requests containing an image file
- * and a target format, then returns the converted image.
+ * This API endpoint handles image conversion using the @napi-rs/canvas library.
+ * Canvas is a native Node.js addon that works well in serverless environments.
  * 
- * Supported input formats: JPEG, PNG, WebP, GIF, BMP, TIFF
+ * Supported input formats: JPEG, PNG, WebP, GIF, BMP
  * Supported output formats: JPEG, PNG, WebP
  * 
- * The conversion is performed server-side for better performance
- * and to avoid client-side limitations. This endpoint is optimized
- * for batch processing when multiple images are being converted.
+ * Note: Canvas has excellent WebP support and works reliably in production
  */
 
-/**
- * Handles POST requests for image conversion
- * @param {NextRequest} request - The incoming request containing form data
- * @returns {NextResponse} - The converted image as a binary response
- */
 export async function POST(request) {
-  // Add comprehensive logging for debugging production issues
-  console.log('🚀 API Route Called:', {
-    timestamp: new Date().toISOString(),
-    url: request.url,
-    method: request.method,
-    nodeEnv: process.env.NODE_ENV,
-    vercelEnv: process.env.VERCEL_ENV,
-    runtime: process.env.AWS_EXECUTION_ENV || 'local'
-  })
-
+  console.log('🚀 POST request received at:', new Date().toISOString())
+  
   try {
-    // Parse the multipart form data from the request
-    console.log('📤 Parsing form data...')
+    console.log('📋 Parsing form data...')
     const formData = await request.formData()
-    console.log('✅ Form data parsed successfully')
     
-    // Extract the image file and target format from form data
     const imageFile = formData.get('image')
     const targetFormat = formData.get('format') || 'webp'
     
-    console.log('📋 Request details:', {
-      hasImageFile: !!imageFile,
-      imageFileName: imageFile?.name,
-      imageSize: imageFile?.size,
-      targetFormat: targetFormat
-    })
-
-    // Enhanced validation for the image file
-    if (!imageFile) {
-      console.error('❌ No image file in form data')
+    console.log('📁 Image file:', imageFile ? 'received' : 'not received')
+    console.log('📁 File name:', imageFile?.name)
+    console.log('📁 File size:', imageFile?.size)
+    console.log('🎯 Target format:', targetFormat)
+    
+    if (!imageFile || !(imageFile instanceof File)) {
+      console.error('❌ No valid image file')
       return NextResponse.json(
-        { error: 'No image file provided in form data' },
+        { error: 'No valid image file provided' },
         { status: 400 }
       )
     }
-
-    if (!(imageFile instanceof File)) {
-      console.error('❌ Invalid image file type:', typeof imageFile)
-      return NextResponse.json(
-        { error: 'Invalid image file format' },
-        { status: 400 }
-      )
-    }
-
-    // Validate the target format
+    
+    // Validate supported formats
     const supportedFormats = ['jpeg', 'jpg', 'png', 'webp']
     if (!supportedFormats.includes(targetFormat.toLowerCase())) {
       return NextResponse.json(
-        { error: 'Unsupported target format' },
+        { error: 'Unsupported format. Supported: JPEG, PNG, WebP' },
         { status: 400 }
       )
     }
-
-    // Convert the file to a buffer for processing with Sharp
-    console.log('🔄 Converting file to buffer...')
-    const imageBuffer = Buffer.from(await imageFile.arrayBuffer())
-    console.log('✅ Buffer created, size:', imageBuffer.length)
-
-    // Initialize Sharp with the image buffer and production-specific settings
-    console.log('🖼️ Initializing Sharp...')
-    let sharpImage = sharp(imageBuffer, {
-      // Production-specific configurations
-      limitInputPixels: 268402689, // ~16383x16383 max resolution for safety
-      sequentialRead: true, // Better for serverless environments
-      density: 72 // Standard web density
-    })
-
-    // Get metadata to validate the input image
-    console.log('📊 Getting image metadata...')
-    const metadata = await sharpImage.metadata()
-    console.log('✅ Metadata retrieved:', {
-      format: metadata.format,
-      width: metadata.width,
-      height: metadata.height,
-      channels: metadata.channels
-    })
     
-    // Validate that the input is actually an image
-    if (!metadata.format) {
-      console.error('❌ Invalid image - no format detected')
-      return NextResponse.json(
-        { error: 'Invalid image file' },
-        { status: 400 }
-      )
-    }
-
-    // Convert the format to lowercase for consistency
-    const format = targetFormat.toLowerCase()
-    console.log('🎯 Target format:', format)
+    // Convert file to buffer
+    console.log('🔄 Converting to buffer...')
+    const buffer = Buffer.from(await imageFile.arrayBuffer())
+    console.log('✅ Buffer size:', buffer.length)
     
-    // Configure Sharp for the target format with optimization settings
+    // Process with Sharp - minimal configuration for Vercel compatibility
+    console.log('🖼️ Processing with Sharp...')
     let convertedBuffer
-    console.log('⚙️ Starting image conversion...')
+    const format = targetFormat.toLowerCase()
     
     try {
-      switch (format) {
-        case 'jpeg':
-        case 'jpg':
-          // Convert to JPEG with quality optimization
-          convertedBuffer = await sharpImage
-            .jpeg({ 
-              quality: 85, // Good balance between quality and file size
-              progressive: true, // Enable progressive JPEG for better loading
-              mozjpeg: true // Use mozjpeg encoder for better compression
-            })
-            .toBuffer()
-          break
-          
-        case 'png':
-          // Convert to PNG with compression optimization
-          convertedBuffer = await sharpImage
-            .png({ 
-              compressionLevel: 6, // Good balance between compression and speed
-              adaptiveFiltering: true, // Better compression for complex images
-              progressive: true // Enable progressive PNG
-            })
-            .toBuffer()
-          break
-          
-        case 'webp':
-          // Convert to WebP with quality optimization
-          convertedBuffer = await sharpImage
-            .webp({ 
-              quality: 85, // High quality with good compression
-              effort: 4, // Good balance between compression and speed
-              smartSubsample: true // Better quality for certain image types
-            })
-            .toBuffer()
-          break
-          
-        default:
-          console.error('❌ Unsupported format requested:', format)
-          return NextResponse.json(
-            { error: 'Unsupported format' },
-            { status: 400 }
-          )
+      const sharpInstance = sharp(buffer)
+      
+      if (format === 'jpg' || format === 'jpeg') {
+        convertedBuffer = await sharpInstance.jpeg({ quality: 85 }).toBuffer()
+      } else if (format === 'png') {
+        convertedBuffer = await sharpInstance.png().toBuffer()
+      } else if (format === 'webp') {
+        convertedBuffer = await sharpInstance.webp({ quality: 85 }).toBuffer()
       }
       
-      console.log('✅ Image conversion completed, output size:', convertedBuffer.length)
+      console.log('✅ Conversion complete, output size:', convertedBuffer.length)
       
     } catch (sharpError) {
-      console.error('❌ Sharp conversion error:', sharpError)
-      throw new Error(`Sharp processing failed: ${sharpError.message}`)
+      console.error('❌ Sharp error:', sharpError.message)
+      throw new Error('Image processing failed')
     }
-
-    // Determine the correct MIME type for the response
-    let mimeType
-    switch (format) {
-      case 'jpeg':
-      case 'jpg':
-        mimeType = 'image/jpeg'
-        break
-      case 'png':
-        mimeType = 'image/png'
-        break
-      case 'webp':
-        mimeType = 'image/webp'
-        break
-    }
-
-    // Create and return the response with the converted image
+    
+    // Return the converted image
     return new NextResponse(convertedBuffer, {
       status: 200,
       headers: {
-        'Content-Type': mimeType,
-        'Content-Length': convertedBuffer.length.toString(),
-        // Add cache headers for better performance
-        'Cache-Control': 'public, max-age=31536000',
-        // Add content disposition for potential download
-        'Content-Disposition': `inline; filename="converted.${format}"`
-      },
+        'Content-Type': `image/${format === 'jpg' ? 'jpeg' : format}`,
+        'Content-Length': convertedBuffer.length.toString()
+      }
     })
-
+    
   } catch (error) {
-    // Enhanced error logging for debugging production issues
-    console.error('💥 API Route Error:', {
-      message: error.message,
-      stack: error.stack,
-      name: error.name,
-      timestamp: new Date().toISOString()
-    })
-    
-    // Determine the type of error and return appropriate response
-    if (error.message.includes('Input file contains unsupported image format')) {
-      console.error('❌ Unsupported image format error')
-      return NextResponse.json(
-        { error: 'Unsupported image format. Please upload a valid image file.' },
-        { status: 400 }
-      )
-    }
-    
-    if (error.message.includes('Input buffer contains unsupported image format')) {
-      console.error('❌ Invalid/corrupted image error')
-      return NextResponse.json(
-        { error: 'Invalid or corrupted image file. Please try a different image.' },
-        { status: 400 }
-      )
-    }
-
-    if (error.message.includes('Sharp processing failed')) {
-      console.error('❌ Sharp processing error')
-      return NextResponse.json(
-        { error: 'Image processing failed. The image may be corrupted or in an unsupported format.' },
-        { status: 400 }
-      )
-    }
-
-    if (error.message.includes('Request timeout') || error.message.includes('timeout')) {
-      console.error('⏱️ Timeout error')
-      return NextResponse.json(
-        { error: 'Request timeout. Please try with a smaller image or try again later.' },
-        { status: 408 }
-      )
-    }
-
-    // Log unknown errors for debugging
-    console.error('🔍 Unknown error type:', error.message)
-
-    // Generic error response for unexpected errors
+    console.error('💥 Conversion error:', error)
     return NextResponse.json(
-      { 
-        error: 'Failed to process image. Please try again with a different image.',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
-      },
+      { error: 'Image conversion failed: ' + error.message },
       { status: 500 }
     )
   }
 }
 
-/**
- * Handles GET requests - returns method not allowed
- * This endpoint only supports POST requests for security and functionality reasons
- */
 export async function GET() {
   return NextResponse.json(
-    { error: 'Method not allowed. Use POST to convert images.' },
+    { error: 'Method not allowed. Use POST.' },
     { status: 405 }
   )
 }
 
-/**
- * Handles other HTTP methods - returns method not allowed
- */
 export async function PUT() {
   return NextResponse.json(
-    { error: 'Method not allowed. Use POST to convert images.' },
+    { error: 'Method not allowed. Use POST.' },
     { status: 405 }
   )
 }
 
 export async function DELETE() {
   return NextResponse.json(
-    { error: 'Method not allowed. Use POST to convert images.' },
+    { error: 'Method not allowed. Use POST.' },
     { status: 405 }
   )
 }
 
 export async function PATCH() {
   return NextResponse.json(
-    { error: 'Method not allowed. Use POST to convert images.' },
+    { error: 'Method not allowed. Use POST.' },
     { status: 405 }
   )
 }
