@@ -4,7 +4,6 @@ import sharp from 'sharp'
 // Configure the API route for production
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
-export const maxDuration = 60
 
 /**
  * Enhanced Image Conversion API Endpoint
@@ -32,26 +31,12 @@ export async function POST(request) {
     timestamp: new Date().toISOString(),
     url: request.url,
     method: request.method,
-    headers: Object.fromEntries(request.headers.entries())
+    nodeEnv: process.env.NODE_ENV,
+    vercelEnv: process.env.VERCEL_ENV,
+    runtime: process.env.AWS_EXECUTION_ENV || 'local'
   })
 
   try {
-    // Check if the request has the correct content type
-    const contentType = request.headers.get('content-type')
-    console.log('📝 Content Type:', contentType)
-    
-    // More flexible content-type checking for different production environments
-    const hasMultipartData = contentType && 
-      (contentType.includes('multipart/form-data') || contentType.includes('multipart'));
-    
-    if (!hasMultipartData) {
-      console.error('❌ Invalid content type:', contentType)
-      return NextResponse.json(
-        { error: 'Invalid content type. Expected multipart/form-data.' },
-        { status: 400 }
-      )
-    }
-
     // Parse the multipart form data from the request
     console.log('📤 Parsing form data...')
     const formData = await request.formData()

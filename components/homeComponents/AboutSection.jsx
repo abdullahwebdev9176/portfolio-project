@@ -2,7 +2,6 @@
 import { assets } from '@/Assets/data'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import BlueFilledBtn from '../Buttons/BlueFilledBtn'
 
 const AboutSection = () => {
 

@@ -29,16 +29,16 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 px-4">
-          <Link href="/about" className="hover:underline">
+          <Link href="/" className="hover:underline">
             About
           </Link>
-          <Link href="/projects" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Projects
           </Link>
           <Link href="/image-converter" className="hover:underline">
             Image Converter
           </Link>
-          <Link href="/contact" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Contact
           </Link>
         </div>
