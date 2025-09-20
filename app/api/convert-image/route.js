@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import sharp from 'sharp'
 
 /**
- * Image Conversion API Endpoint
+ * Enhanced Image Conversion API Endpoint
  * 
  * This API endpoint handles image conversion using the Sharp library.
  * It processes multipart/form-data requests containing an image file
@@ -12,7 +12,8 @@ import sharp from 'sharp'
  * Supported output formats: JPEG, PNG, WebP
  * 
  * The conversion is performed server-side for better performance
- * and to avoid client-side limitations.
+ * and to avoid client-side limitations. This endpoint is optimized
+ * for batch processing when multiple images are being converted.
  */
 
 /**
