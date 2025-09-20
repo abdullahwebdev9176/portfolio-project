@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app/api/convert-image/route.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

@@ -26,6 +26,11 @@ export const dynamic = 'force-dynamic'
  * @returns {NextResponse} - The converted image as a binary response
  */
 export async function POST(request) {
+  return NextResponse.json({
+    success: true,
+    message: "✅ POST working on Vercel"
+  })
+
   // Add comprehensive logging for debugging production issues
   console.log('🚀 API Route Called:', {
     timestamp: new Date().toISOString(),
