@@ -454,7 +454,7 @@ const ImageConverter = () => {
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
-                multiple
+                multiple={true}
                 onChange={handleFileInputChange}
                 className="hidden"
               />
@@ -462,8 +462,8 @@ const ImageConverter = () => {
                 ref={folderInputRef}
                 type="file"
                 accept="image/*"
-                webkitdirectory
-                multiple
+                webkitdirectory=""
+                multiple={true}
                 onChange={handleFolderInputChange}
                 className="hidden"
               />
