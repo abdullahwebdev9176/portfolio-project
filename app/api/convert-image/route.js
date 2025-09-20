@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import sharp from 'sharp'
 
+// Configure the API route for production
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 /**
  * Enhanced Image Conversion API Endpoint
  * 
@@ -23,6 +27,15 @@ import sharp from 'sharp'
  */
 export async function POST(request) {
   try {
+    // Check if the request has the correct content type
+    const contentType = request.headers.get('content-type')
+    if (!contentType || !contentType.includes('multipart/form-data')) {
+      return NextResponse.json(
+        { error: 'Invalid content type. Expected multipart/form-data.' },
+        { status: 400 }
+      )
+    }
+
     // Parse the multipart form data from the request
     const formData = await request.formData()
     
@@ -30,10 +43,17 @@ export async function POST(request) {
     const imageFile = formData.get('image')
     const targetFormat = formData.get('format') || 'webp'
 
-    // Validate that an image file was provided
-    if (!imageFile || !(imageFile instanceof File)) {
+    // Enhanced validation for the image file
+    if (!imageFile) {
       return NextResponse.json(
-        { error: 'No image file provided' },
+        { error: 'No image file provided in form data' },
+        { status: 400 }
+      )
+    }
+
+    if (!(imageFile instanceof File)) {
+      return NextResponse.json(
+        { error: 'Invalid image file format' },
         { status: 400 }
       )
     }
@@ -172,6 +192,30 @@ export async function POST(request) {
  * This endpoint only supports POST requests for security and functionality reasons
  */
 export async function GET() {
+  return NextResponse.json(
+    { error: 'Method not allowed. Use POST to convert images.' },
+    { status: 405 }
+  )
+}
+
+/**
+ * Handles other HTTP methods - returns method not allowed
+ */
+export async function PUT() {
+  return NextResponse.json(
+    { error: 'Method not allowed. Use POST to convert images.' },
+    { status: 405 }
+  )
+}
+
+export async function DELETE() {
+  return NextResponse.json(
+    { error: 'Method not allowed. Use POST to convert images.' },
+    { status: 405 }
+  )
+}
+
+export async function PATCH() {
   return NextResponse.json(
     { error: 'Method not allowed. Use POST to convert images.' },
     { status: 405 }

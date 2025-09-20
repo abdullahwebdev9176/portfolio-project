@@ -207,7 +207,18 @@ const ImageConverter = () => {
             })
 
             if (!response.ok) {
-              throw new Error(`Conversion failed for ${file.name}`)
+              // Try to get more detailed error information
+              let errorMessage = `HTTP ${response.status}: ${response.statusText}`
+              try {
+                const errorData = await response.json()
+                if (errorData.error) {
+                  errorMessage = errorData.error
+                }
+              } catch (parseError) {
+                // If we can't parse the error response, use the default message
+                console.error('Error parsing error response:', parseError)
+              }
+              throw new Error(`Conversion failed for ${file.name}: ${errorMessage}`)
             }
 
             const blob = await response.blob()
