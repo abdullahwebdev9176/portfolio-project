@@ -400,26 +400,26 @@ const ImageConverter = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white py-8 px-4">
+    <div className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-slate-800 mb-4 flex items-center justify-center gap-3">
+          <h1 className="text-4xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
             <ImageIcon className="text-blue-600" size={40} />
             Image Converter
           </h1>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
             Convert multiple images to different formats quickly and easily.
             Upload any number of images and convert them to JPG, PNG, or WebP format.
           </p>
         </div>
 
         {/* Main Converter Card */}
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 md:p-8">
+        <div className="bg-background rounded-xl shadow-lg border border-foreground/20 p-6 md:p-8">
 
           {/* File Upload Section */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
               <Upload size={24} />
               Upload Images
             </h2>
@@ -432,7 +432,7 @@ const ImageConverter = () => {
                 border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300
                 ${isDragOver
                   ? 'border-blue-600 bg-blue-50'
-                  : 'border-slate-300 hover:border-blue-600 hover:bg-slate-50'
+                  : 'border-foreground/30 hover:border-blue-600 hover:bg-foreground/5'
                 }
               `}
               onDragOver={handleDragOver}
@@ -440,17 +440,17 @@ const ImageConverter = () => {
               onDrop={handleDrop}
               onClick={handleUploadAreaClick}
             >
-              <FileImage size={48} className="mx-auto text-slate-400 mb-4" />
-              <p className="text-lg font-medium text-slate-700 mb-2">
+              <FileImage size={48} className="mx-auto text-foreground/40 mb-4" />
+              <p className="text-lg font-medium text-foreground mb-2">
                 {selectedFiles.length > 0
                   ? `${selectedFiles.length} image${selectedFiles.length > 1 ? 's' : ''} selected`
                   : 'Drop your images here or click to browse'
                 }
               </p>
-              <p className="text-sm text-slate-500 mb-2">
+              <p className="text-sm text-foreground/60 mb-2">
                 Supports: JPG, PNG, WebP, GIF, BMP, TIFF (Max 10MB per file, 100 files max)
               </p>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-foreground/50">
                 Click to choose between uploading files or entire folders
               </p>
 
@@ -467,22 +467,22 @@ const ImageConverter = () => {
 
             {/* Selected Files Display */}
             {selectedFiles.length > 0 && (
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="flex items-center gap-2 text-blue-800 mb-3">
+              <div className="mt-6 p-4 rounded border-2 border-foreground/20">
+                <div className="flex items-center gap-2 text-foreground/70 mb-3">
                   <CheckCircle2 size={20} />
                   <span className="font-medium">Selected Files ({selectedFiles.length}):</span>
                 </div>
                 <div className="max-h-40 overflow-y-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {selectedFiles.slice(0, 10).map((file, index) => (
-                      <div key={index} className="text-sm text-blue-700 bg-white px-3 py-2 rounded border">
+                      <div key={index} className="text-sm text-foreground/70 px-3 py-2 rounded border-2 border-foreground/20">
                         <p className="font-medium truncate">{file.name}</p>
-                        <p className="text-xs text-blue-600">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                        <p className="text-xs text-foreground/60">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                       </div>
                     ))}
                   </div>
                   {selectedFiles.length > 10 && (
-                    <p className="text-sm text-blue-600 mt-2">
+                    <p className="text-sm text-foreground/70 mt-2">
                       ... and {selectedFiles.length - 10} more files
                     </p>
                   )}
@@ -493,7 +493,7 @@ const ImageConverter = () => {
 
           {/* Format Selection Section */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
               <Settings size={24} />
               Output Format
             </h2>
@@ -505,8 +505,8 @@ const ImageConverter = () => {
                   <div className={`
                     p-4 rounded-lg border-2 transition-all duration-300
                     ${targetFormat === format
-                      ? 'border-blue-600 bg-blue-50'
-                      : 'border-slate-200 hover:border-blue-300'
+                      ? 'border-blue-600'
+                      : 'border-foreground/20 hover:border-blue-300'
                     }
                   `}>
                     <input
@@ -518,10 +518,10 @@ const ImageConverter = () => {
                       className="sr-only"
                     />
                     <div className="text-center">
-                      <div className="text-lg font-semibold text-slate-800 uppercase">
+                      <div className="text-lg font-semibold text-foreground uppercase">
                         {format}
                       </div>
-                      <div className="text-sm text-slate-600 mt-1">
+                      <div className="text-sm text-foreground/70 mt-1">
                         {format === 'webp' && 'Best compression, modern format'}
                         {format === 'jpg' && 'Universal support, smaller files'}
                         {format === 'png' && 'Lossless quality, transparency support'}
@@ -541,7 +541,7 @@ const ImageConverter = () => {
               className={`
                 flex-1 py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300
                 ${selectedFiles.length === 0 || isConverting
-                  ? 'bg-slate-400 cursor-not-allowed'
+                  ? 'bg-foreground/40 cursor-not-allowed'
                   : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
                 }
               `}
@@ -558,7 +558,7 @@ const ImageConverter = () => {
 
             <button
               onClick={handleReset}
-              className="flex-1 sm:flex-none py-3 px-6 rounded-lg font-semibold text-slate-700 bg-slate-200 hover:bg-slate-300 transition-all duration-300"
+              className="flex-1 sm:flex-none py-3 px-6 rounded-lg font-semibold text-foreground bg-foreground/10 hover:bg-foreground/20 transition-all duration-300"
             >
               Reset
             </button>
@@ -567,7 +567,7 @@ const ImageConverter = () => {
           {/* Progress Bar */}
           {isConverting && (
             <div className="mb-6">
-              <div className="w-full bg-slate-200 rounded-full h-2">
+              <div className="w-full bg-foreground/20 rounded-full h-2">
                 <div
                   className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${conversionProgress}%` }}
@@ -588,25 +588,25 @@ const ImageConverter = () => {
           )}
 
           {success && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <div className="flex items-center gap-2 text-green-800">
+            <div className="mb-6 p-4 border-2 border-foreground/20 rounded-lg">
+              <div className="flex items-center gap-2 text-foreground/70">
                 <CheckCircle2 size={20} />
                 <span className="font-medium">Success:</span>
               </div>
-              <p className="mt-1 text-green-700">{success}</p>
+              <p className="mt-1 text-foreground/70">{success}</p>
             </div>
           )}
 
           {/* Download Section */}
           {convertedImages.length > 0 && (
-            <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
+            <div className="bg-foreground/5 rounded-lg p-6 border border-foreground/20">
+              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Download size={24} />
                 Download Converted Images
               </h3>
 
               <div className="mb-4">
-                <p className="text-slate-700">
+                <p className="text-foreground/80">
                   <strong>{convertedImages.length}</strong> image{convertedImages.length > 1 ? 's' : ''} successfully converted to <strong>{targetFormat.toUpperCase()}</strong> format.
                 </p>
               </div>
@@ -617,7 +617,7 @@ const ImageConverter = () => {
                 <div className="space-y-4">
                   {/* Individual Downloads */}
                   <div>
-                    <h4 className="font-medium text-slate-800 mb-3">Download Individual Images:</h4>
+                    <h4 className="font-medium text-foreground mb-3">Download Individual Images:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {convertedImages.map((image, index) => (
                         <button
@@ -633,8 +633,8 @@ const ImageConverter = () => {
                   </div>
 
                   {/* ZIP Download Option */}
-                  <div className="border-t border-slate-300 pt-4">
-                    <h4 className="font-medium text-slate-800 mb-3">Or download all as ZIP:</h4>
+                  <div className="border-t border-foreground/30 pt-4">
+                    <h4 className="font-medium text-foreground mb-3">Or download all as ZIP:</h4>
                     <button
                       onClick={handleZipDownload}
                       className="flex items-center gap-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
@@ -647,7 +647,7 @@ const ImageConverter = () => {
               ) : (
                 // 5 or more images: Show only ZIP download option
                 <div>
-                  <p className="text-slate-600 mb-4">
+                  <p className="text-foreground/70 mb-4">
                     With {convertedImages.length} images, we recommend downloading them as a ZIP file for convenience.
                   </p>
                   <button
@@ -664,7 +664,7 @@ const ImageConverter = () => {
         </div>
 
         {/* Footer Information */}
-        <div className="mt-8 text-center text-slate-600">
+        <div className="mt-8 text-center text-foreground/60">
           <p className="text-sm">
             All processing is done securely. Your images are processed on our servers and not permanently stored.
           </p>
