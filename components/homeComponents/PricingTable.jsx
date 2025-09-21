@@ -46,11 +46,11 @@ const PricingTable = () => {
         <h2 className="text-2xl md:text-4xl font-bold">Pricing table</h2>
       </div>
 
-      <div className="flex justify-center items-start flex-wrap ">
+      <div className="flex justify-center items-start flex-wrap gap-6 max-w-6xl mx-auto px-4">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="text-center bg-[var(--cardBg)] rounded-lg p-6 w-1/3"
+            className="text-center bg-[var(--cardBg)] rounded-lg p-6 flex-1 min-w-[280px] max-w-[350px] shadow-lg"
           >
             <h3 className="text-4xl font-semibold mb-15 text-foreground">
               {plan.title}
