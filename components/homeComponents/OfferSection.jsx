@@ -4,11 +4,12 @@ import React from 'react'
 
 // Swiper imports
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from "swiper/modules"
 
 // Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const OfferSection = () => {
     const offers = [
@@ -38,30 +39,40 @@ const OfferSection = () => {
 
             {/* Swiper Added */}
             <Swiper
-                modules={[Navigation]}
-                navigation={true}
+                modules={[Navigation, Pagination]}
                 spaceBetween={20}
+                pagination={{ clickable: true }}
+                navigation={{ enabled: true }}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
+                        navigation: { enabled: false },
+                        pagination: { clickable: true },
+                        slidesOffsetBefore: 20,
+                        slidesOffsetAfter: 20,
                     },
                     767: {
                         slidesPerView: 2,
+                        navigation: { enabled: true },
+                        pagination: false,
                     },
                     1024: {
                         slidesPerView: 3,
+                        navigation: { enabled: true },
+                        pagination: false,
                     },
                 }}
             >
                 {offers.map((offer, index) => (
                     <SwiperSlide key={index} className="h-auto">
-                        <div className="w-full h-full bg-[#1b1b1c] m-2 hover:shadow-lg transition-shadow duration-300 cursor-pointer p-11 xl:p-16 flex flex-col">
+                        <div className="w-full h-full bg-[#1b1b1c] hover:shadow-lg transition-shadow duration-300 cursor-pointer p-11 xl:p-16 flex flex-col">
                             <h6 className="text-2xl font-semibold mb-4">{offer.title}</h6>
                             <p className="text-white flex-grow">{offer.desc}</p>
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
+
 
 
             <style jsx global>{`
