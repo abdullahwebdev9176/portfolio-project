@@ -1,6 +1,7 @@
 import AboutSection from "@/components/homeComponents/AboutSection";
 import HeroSection from "@/components/homeComponents/HeroSection";
 import OfferSection from "@/components/homeComponents/OfferSection";
+import ProgressCircles from "@/components/homeComponents/ProgressCircles";
 import Image from "next/image";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <OfferSection />
+        <ProgressCircles />
       </main>
     </div>
   );
