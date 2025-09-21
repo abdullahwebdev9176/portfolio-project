@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ede9e9;
   --foreground: #171717;
+  --cardBg: #ffffff;
+  --textColor: #171717;
 }
 
 @theme inline {
@@ -16,6 +18,8 @@
   :root {
     --background: #121212;
     --foreground: #ededed;
+    --cardBg: #1b1b1c;
+    --textColor: #ffffff;
   }
 }
 

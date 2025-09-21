@@ -65,9 +65,9 @@ const OfferSection = () => {
             >
                 {offers.map((offer, index) => (
                     <SwiperSlide key={index} className="h-auto">
-                        <div className="w-full h-full bg-[#1b1b1c] hover:shadow-lg transition-shadow duration-300 cursor-pointer p-11 xl:p-16 flex flex-col">
-                            <h6 className="text-2xl font-semibold mb-4">{offer.title}</h6>
-                            <p className="text-white flex-grow">{offer.desc}</p>
+                        <div className="w-full h-full bg-[var(--cardBg)] hover:shadow-lg transition-shadow duration-300 cursor-pointer p-11 xl:p-16 flex flex-col">
+                            <h6 className="text-2xl font-semibold mb-4 text-[var(--textColor)]">{offer.title}</h6>
+                            <p className="text-[var(--textColor)] flex-grow">{offer.desc}</p>
                         </div>
                     </SwiperSlide>
                 ))}
