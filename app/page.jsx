@@ -3,6 +3,7 @@ import HeroSection from "@/components/homeComponents/HeroSection";
 import OfferSection from "@/components/homeComponents/OfferSection";
 import PricingTable from "@/components/homeComponents/PricingTable";
 import ProgressCircles from "@/components/homeComponents/ProgressCircles";
+import ProjectSection from "@/components/homeComponents/ProjectSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <OfferSection />
         <ProgressCircles />
         <PricingTable />
+        <ProjectSection />
       </main>
     </div>
   );
