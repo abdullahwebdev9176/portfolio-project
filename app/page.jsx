@@ -1,4 +1,5 @@
 import AboutSection from "@/components/homeComponents/AboutSection";
+import ContactFormSection from "@/components/homeComponents/ContactFormSection";
 import HeroSection from "@/components/homeComponents/HeroSection";
 import OfferSection from "@/components/homeComponents/OfferSection";
 import PricingTable from "@/components/homeComponents/PricingTable";
@@ -16,6 +17,7 @@ export default function Home() {
         <ProgressCircles />
         <PricingTable />
         <ProjectSection />
+        <ContactFormSection />
       </main>
     </div>
   );
