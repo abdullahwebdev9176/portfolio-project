@@ -38,7 +38,7 @@ const ContactFormSection = () => {
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
                     <div className="text-center mt-14 mb-5">
-                        <h2 className="text-2xl md:text-4xl font-bold">Pricing table</h2>
+                        <h2 className="text-2xl md:text-4xl font-bold">Get in Touch</h2>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
                         Have a project in mind? Let's discuss how we can bring your ideas to life.
@@ -48,7 +48,7 @@ const ContactFormSection = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Contact Info */}
                     <div className="space-y-8">
-                        <div>
+                        <div className='text-center text-lg-left'>
                             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
                                 Let's Connect
                             </h3>
