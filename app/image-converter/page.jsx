@@ -73,7 +73,7 @@ const ImageConverter = () => {
     const validFiles = []
     const invalidFiles = []
     const oversizedFiles = []
-    const maxSize = 10 * 1024 * 1024 // 10MB per file
+    const maxSize = 100 * 1024 * 1024 // 100MB per file
 
     fileArray.forEach(file => {
       if (!isValidImageFile(file)) {
@@ -319,7 +319,7 @@ const ImageConverter = () => {
 
     // Generate filename with new extension
     const originalName = convertedImage.originalName.split('.').slice(0, -1).join('.')
-    link.download = `${originalName}_converted.${targetFormat}`
+    link.download = `${originalName}.${targetFormat}`
 
     document.body.appendChild(link)
     link.click()
@@ -347,7 +347,7 @@ const ImageConverter = () => {
       for (const convertedImage of convertedImages) {
         // Generate filename with new extension
         const originalName = convertedImage.originalName.split('.').slice(0, -1).join('.')
-        const fileName = `${originalName}_converted.${targetFormat}`
+        const fileName = `${originalName}.${targetFormat}`
 
         // Add the blob data to the ZIP folder
         imagesFolder.file(fileName, convertedImage.convertedBlob)
