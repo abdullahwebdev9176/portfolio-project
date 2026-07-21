@@ -44,7 +44,7 @@ const HeroSection = () => {
 
         <div className='w-full lg:w-1/2'>
           <div className='rounded-full overflow-hidden bg-slate-800 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] mx-auto'> 
-            <Image src={assets.HeroImg} alt="Hero" className='w-full h-auto' />
+            <Image src={assets.profile} alt="Hero" className='w-full h-auto' />
           </div>
         </div>
 

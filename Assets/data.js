@@ -5,6 +5,7 @@ import cstats from '@/Assets/Images/cstats.webp';
 import tripAdvisorImg from '@/Assets/Images/trip-advisor.webp';
 import alkhidmat from '@/Assets/Images/alkhidmat.png';
 import servicemarkaz from '@/Assets/Images/servicemarkaz.png';
+import profile from '@/Assets/Images/Abdullah.jpeg'
 
 export const assets = {
     HeroImg,
@@ -13,5 +14,6 @@ export const assets = {
     cstats,
     tripAdvisorImg,
     alkhidmet: alkhidmat,
-    serviceMarkaz: servicemarkaz
+    serviceMarkaz: servicemarkaz,
+    profile: profile
 };

@@ -4,6 +4,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Mail, Phone, MapPin, Send, User, MessageSquare } from 'lucide-react'
+import Link from 'next/link'
 
 const ContactFormSection = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -65,7 +66,7 @@ const ContactFormSection = () => {
                                 </div>
                                 <div>
                                     <p className="font-medium text-gray-900 dark:text-white">Email</p>
-                                    <p className="text-gray-600 dark:text-gray-300">contact@yourname.com</p>
+                                    <p className="text-gray-600 dark:text-gray-300">abdullahverse9176@gmail.com</p>
                                 </div>
                             </div>
 
@@ -75,7 +76,7 @@ const ContactFormSection = () => {
                                 </div>
                                 <div>
                                     <p className="font-medium text-gray-900 dark:text-white">Phone</p>
-                                    <p className="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                                    <p className="text-gray-600 dark:text-gray-300"><Link href="tel:+923460779176">+92 346 0779176</Link></p>
                                 </div>
                             </div>
 
@@ -85,7 +86,7 @@ const ContactFormSection = () => {
                                 </div>
                                 <div>
                                     <p className="font-medium text-gray-900 dark:text-white">Location</p>
-                                    <p className="text-gray-600 dark:text-gray-300">Your City, Country</p>
+                                    <p className="text-gray-600 dark:text-gray-300">Islamabad, Pakistan</p>
                                 </div>
                             </div>
                         </div>
