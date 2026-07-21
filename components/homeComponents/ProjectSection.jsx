@@ -8,9 +8,19 @@ const ProjectSection = () => {
 
     const projects = [
         {
+            title: "Service Markaz",
+            image: assets.serviceMarkaz,
+            link: "https://www.servicemarkaz.com/"
+        },
+        {
             title: "Blog Website",
             image: assets.blogImg,
             link: "https://hafsa-health-blogger.vercel.app/"
+        },
+        {
+            title: "AlKhidmet Website",
+            image: assets.alkhidmet,
+            link: "https://alkhidmat-foundation-chiniot.vercel.app/"
         },
         {
             title: "CSTATS Website",
