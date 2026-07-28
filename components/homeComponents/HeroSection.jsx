@@ -34,24 +34,28 @@ const HeroSection = () => {
             Available for new opportunities
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-            Hi, I'm <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
-              <TypeAnimation
-                sequence={[
-                  'Muhammad Abdullah',
-                  2000,
-                  'a Web Developer',
-                  2000,
-                  'Figma to Code Expert',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
+          <div className="flex flex-col gap-1 items-center lg:items-start">
+            <span className="text-xl font-semibold text-slate-505 dark:text-slate-400">
+              Hi, I'm
             </span>
-          </h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
+                <TypeAnimation
+                  sequence={[
+                    'Muhammad Abdullah',
+                    2000,
+                    'A Web Developer',
+                    2000,
+                    'Figma to Code Expert',
+                    2000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </span>
+            </h1>
+          </div>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
             A passionate developer specializing in building exceptional digital experiences. Currently, I'm focused on developing responsive web applications, interactive interfaces, and clean, modular systems.
