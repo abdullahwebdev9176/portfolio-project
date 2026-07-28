@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Mail, Phone, MapPin, Send, User, MessageSquare, Sparkles, MessageCircle, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, User, MessageSquare, Sparkles, MessageCircle, Github, Linkedin, FileText } from 'lucide-react'
 import Link from 'next/link'
 
 const ContactFormSection = () => {
@@ -203,15 +203,20 @@ const ContactFormSection = () => {
 
                             {/* Subject Field */}
                             <div>
-                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-405 mb-2">
                                     Subject
                                 </label>
-                                <input
-                                    type="text"
-                                    {...register('subject')}
-                                    className="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-800/80 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none text-slate-900 dark:text-white"
-                                    placeholder="What's this about?"
-                                />
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <FileText className="h-5 w-5 text-slate-405 dark:text-slate-650" />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        {...register('subject')}
+                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none text-slate-900 dark:text-white"
+                                        placeholder="What's this about?"
+                                    />
+                                </div>
                             </div>
 
                             {/* Message Field */}
