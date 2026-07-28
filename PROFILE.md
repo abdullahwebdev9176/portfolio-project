@@ -5,7 +5,7 @@ I'm **Muhammad Abdullah**, a Frontend Developer with **2 years of professional e
 
 I enjoy building modern, responsive, and user-friendly websites using technologies like **React.js**, **Next.js**, **JavaScript, JQuery**, **Tailwind CSS**, and **Bootstrap**.
 
-Over the past two years, I have worked on **150+ live websites**, mainly for clients in the marine industry. During this time, I've gained experience developing new features, fixing bugs, improving website performance, and making websites more SEO-friendly.
+Over the past two years, I have worked on **150+ websites** for clients in the marine industry. I have developed new features, integrated APIs, fixed bugs, improved website performance, and optimized websites for SEO.
 
 ---
 
@@ -13,7 +13,7 @@ Over the past two years, I have worked on **150+ live websites**, mainly for cli
 - **Education:** 
   - Bachelor of Computer Science (BCS) - **Virtual University of Pakistan** *(In Progress)*
   - Bachelor of Arts (BA)
-- **Current/Past Role:** Software Engineer at **Vizz Web Solutions** (2+ Years)
+- **Current/Past Role:** Web Developer at **Vizz Web Solutions** (2+ Years)
 - **Industry Expertise:** Specialized in the **Marine & Yachting Industry**
   - Successfully built, optimized, and maintained **over 150 websites** in the marine domain.
   - Worked on high-profile projects like **[Strongs Marine](https://www.strongsmarine.com/)** and other major dealership platforms.
@@ -38,12 +38,14 @@ Over the past two years, I have worked on **150+ live websites**, mainly for cli
 ## Professional Experience & Highlights
 
 ### **Vizz Web Solutions** (2 Years)
-*Developer*
-- Developed, customized, and maintained over **150 marine-related web platforms**.
-- Implemented robust front-end architectures using **React.js** and **Next.js** to deliver lightning-fast loading speeds and flawless SEO rankings.
-- Managed complex state structures using **Zustand** and **Redux** for seamless user flows.
-- Designed pixel-perfect, highly responsive interfaces utilizing **Tailwind CSS** and **Bootstrap**.
-- Engineered RESTful APIs and lightweight backend services using **Node.js** and **Express**.
+*Web Developer*
+* Developed, customized, and maintained **150+ websites** for clients in the marine industry.
+* Built responsive and user-friendly websites using **React.js** and **Next.js**.
+* Managed application state using **Redux** and **Zustand**.
+* Created responsive layouts using **Tailwind CSS** and **Bootstrap**.
+* Fixed bugs, added new features, and improved website performance.
+* Worked closely with designers and team members to deliver client requirements.
+
 
 ---
 
