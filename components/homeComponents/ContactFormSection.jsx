@@ -21,13 +21,24 @@ const ContactFormSection = () => {
         setSubmitMessage('')
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500))
-            console.log('Form data:', data)
-            setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
-            reset()
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            const result = await response.json()
+
+            if (response.ok && result.success) {
+                setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
+                reset()
+            } else {
+                setSubmitMessage(result.error || 'Something went wrong. Please try again.')
+            }
         } catch (error) {
-            setSubmitMessage('Something went wrong. Please try again.')
+            setSubmitMessage('Could not connect to the mail server. Please try again.')
         } finally {
             setIsSubmitting(false)
         }
