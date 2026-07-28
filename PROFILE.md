@@ -46,20 +46,10 @@ Over the past two years, I have worked on **150+ websites** for clients in the m
 * Fixed bugs, added new features, and improved website performance.
 * Worked closely with designers and team members to deliver client requirements.
 
-
----
-
-## Featured Marine Projects
-Having built over 150 marine industry sites, I specialize in:
-* **Boat/Yacht Inventory Search & Filters** (Optimized search UX)
-* **Custom Dealer Portal Integrations**
-* **Dynamic Lead Generation Forms & Booking Engines**
-* **Premium Brand Showcases** (e.g., Strongs Marine, yacht charter platforms)
-
 ---
 
 ## Let's Connect!
-- **LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/yourusername)
-- **GitHub:** [Your GitHub Profile](https://github.com/yourusername)
-- **Email:** [your.email@example.com](mailto:your.email@example.com)
-- **Portfolio:** [Your Portfolio Website Link](https://yourportfolio.com)
+- **LinkedIn:** [Your LinkedIn Profile](https://www.linkedin.com/in/muhammad-abdullah-3467b3202/)
+- **GitHub:** [Your GitHub Profile](https://github.com/abdullahverse9176)
+- **Email:** [your.email@example.com](mailto:abdullahverse9176@gmail.com)
+- **Portfolio:** [Your Portfolio Website Link](https://buildwithabdullah.vercel.app/)
