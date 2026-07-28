@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Logo & Info */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
             <Link href="/" className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
-              M. Abdullah
+              Muhammad Abdullah
             </Link>
             <p className="text-sm text-slate-500 dark:text-slate-400">
               Building high-performance, beautiful web interfaces.

@@ -20,12 +20,12 @@ const Header = () => {
   };
 
   const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
+    { label: 'About', href: '/#about' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Skills', href: '/#skills' },
+    { label: 'Projects', href: '/#projects' },
     { label: 'Image Converter', href: '/image-converter' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   return (
