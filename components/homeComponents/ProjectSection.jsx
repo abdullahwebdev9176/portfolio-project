@@ -4,6 +4,7 @@ import { assets } from '@/Assets/data'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { ExternalLink } from 'lucide-react'
+import Link from 'next/link'
 
 const ProjectSection = () => {
     const [activeFilter, setActiveFilter] = useState('All')
@@ -101,7 +102,7 @@ const ProjectSection = () => {
                                     
                                     {/* Action link overlay */}
                                     <div className='absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 z-10'>
-                                        <a
+                                        <Link
                                             href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -109,7 +110,7 @@ const ProjectSection = () => {
                                             aria-label="Open project"
                                         >
                                             <ExternalLink className="w-5 h-5" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -138,7 +139,7 @@ const ProjectSection = () => {
 
                                     {/* Live Link Button */}
                                     <div className="pt-4 mt-auto border-t border-slate-100 dark:border-slate-850 flex items-center">
-                                        <a
+                                        <Link
                                             href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -146,7 +147,7 @@ const ProjectSection = () => {
                                         >
                                             Explore Website 
                                             <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

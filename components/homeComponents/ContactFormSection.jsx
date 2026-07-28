@@ -68,9 +68,9 @@ const ContactFormSection = () => {
                                 </div>
                                 <div className="text-left">
                                     <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Email</p>
-                                    <a href="mailto:abdullahverse9176@gmail.com" className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                    <Link href="mailto:abdullahverse9176@gmail.com" className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                         abdullahverse9176@gmail.com
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -103,7 +103,7 @@ const ContactFormSection = () => {
                         <div className="pt-6 border-t border-slate-200/50 dark:border-slate-800/50 text-left">
                             <p className="text-xs font-bold text-slate-405 dark:text-slate-500 uppercase tracking-widest mb-4">Direct Messaging & Socials</p>
                             <div className="flex flex-wrap gap-3">
-                                <a 
+                                <Link 
                                     href="https://wa.me/923460779176" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
@@ -111,8 +111,8 @@ const ContactFormSection = () => {
                                 >
                                     <MessageCircle className="w-4 h-4" />
                                     WhatsApp Chat
-                                </a>
-                                <a 
+                                </Link>
+                                <Link 
                                     href="https://linkedin.com/" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
@@ -120,8 +120,8 @@ const ContactFormSection = () => {
                                 >
                                     <Linkedin className="w-4 h-4" />
                                     LinkedIn Profile
-                                </a>
-                                <a 
+                                </Link>
+                                <Link 
                                     href="https://github.com/" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
@@ -129,7 +129,7 @@ const ContactFormSection = () => {
                                 >
                                     <Github className="w-4 h-4" />
                                     GitHub Profile
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

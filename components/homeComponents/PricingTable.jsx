@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Check, X, Sparkles } from "lucide-react";
+import Link from 'next/link';
 
 const PricingTable = () => {
   const plans = [
@@ -106,7 +107,7 @@ const PricingTable = () => {
                 ))}
               </ul>
 
-              <a
+              <Link
                 href="#contact"
                 className={`w-full py-3.5 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-[1.02] cursor-pointer ${
                   plan.popular
@@ -115,7 +116,7 @@ const PricingTable = () => {
                 }`}
               >
                 Hire Me
-              </a>
+              </Link>
             </div>
           ))}
         </div>
