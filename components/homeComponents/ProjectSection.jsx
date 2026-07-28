@@ -2,10 +2,14 @@
 
 import { assets } from '@/Assets/data'
 import Image from 'next/image'
-import React from 'react'
-import { ExternalLink, Layers, Link as LinkIcon } from 'lucide-react'
+import React, { useState } from 'react'
+import { ExternalLink } from 'lucide-react'
 
 const ProjectSection = () => {
+    const [activeFilter, setActiveFilter] = useState('All')
+
+    const filterCategories = ['All', 'Next.js', 'React', 'APIs']
+
     const projects = [
         {
             title: "Service Markaz",
@@ -44,22 +48,49 @@ const ProjectSection = () => {
         },
     ];
 
+    const filteredProjects = projects.filter(project => {
+        if (activeFilter === 'All') return true;
+        if (activeFilter === 'Next.js') return project.tags.includes('Next.js');
+        if (activeFilter === 'React') return project.tags.includes('React');
+        if (activeFilter === 'APIs') {
+            return project.tags.some(tag => ['REST API', 'API Integration', 'Maps API'].includes(tag));
+        }
+        return true;
+    });
+
     return (
         <section id="projects" className="py-24 px-4 md:px-8 border-t border-slate-200/50 dark:border-slate-800/50 scroll-mt-20">
             <div className="container mx-auto">
-                <div className="text-center mb-16">
+                <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Featured Projects</h2>
                     <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 rounded-full mx-auto mt-4 mb-5"></div>
-                    <p className="text-slate-650 dark:text-slate-400 max-w-2xl mx-auto">
+                    <p className="text-slate-655 dark:text-slate-400 max-w-2xl mx-auto">
                         Here are some of the modern web apps and UI designs I have built. Click to explore them live.
                     </p>
                 </div>
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto'>
-                    {projects.map((project, index) => {
+                {/* Category Filters */}
+                <div className="flex flex-wrap justify-center gap-2 mb-12">
+                    {filterCategories.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setActiveFilter(category)}
+                            className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
+                                activeFilter === category
+                                    ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/10'
+                                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-slate-350 dark:hover:border-slate-700'
+                            }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto min-h-[400px] align-start'>
+                    {filteredProjects.map((project, index) => {
                         return (
                             <div 
-                                className='group bg-white dark:bg-slate-900/55 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 hover:border-blue-500/35 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col overflow-hidden relative' 
+                                className='group bg-white dark:bg-slate-900/55 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 hover:border-blue-500/35 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col overflow-hidden relative animate-fade-in' 
                                 key={index}
                             >
                                 {/* Project Image Box */}
@@ -72,7 +103,7 @@ const ProjectSection = () => {
                                             className='object-cover transition-transform duration-500 group-hover:scale-105' 
                                         />
                                     ) : (
-                                        <div className="absolute inset-0 flex items-center justify-center text-slate-450">Project Demo Preview</div>
+                                        <div className="absolute inset-0 flex items-center justify-center text-slate-400">Project Demo Preview</div>
                                     )}
                                     
                                     {/* Action link overlay */}
@@ -118,7 +149,7 @@ const ProjectSection = () => {
                                             href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-indigo-650 dark:hover:text-indigo-350 inline-flex items-center gap-1.5 transition-colors cursor-pointer group/link"
+                                            className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-indigo-600 dark:hover:text-indigo-400 inline-flex items-center gap-1.5 transition-colors cursor-pointer group/link"
                                         >
                                             Explore Website 
                                             <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />

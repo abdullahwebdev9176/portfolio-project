@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Upload, Download, Settings, Image as ImageIcon, FileImage, AlertCircle, CheckCircle2, Archive } from 'lucide-react'
 import JSZip from 'jszip'
 
@@ -115,7 +115,6 @@ const ImageConverter = () => {
     setSuccess(`${validFiles.length} image${validFiles.length > 1 ? 's' : ''} uploaded successfully!`)
   }
 
-
   /**
    * Handles the drag over event for drag-and-drop functionality
    * Prevents default behavior and shows visual feedback
@@ -195,7 +194,7 @@ const ImageConverter = () => {
         const batch = selectedFiles.slice(i, i + batchSize)
 
         // Process current batch in parallel
-        const batchPromises = batch.map(async (file, batchIndex) => {
+        const batchPromises = batch.map(async (file) => {
           let retryCount = 0
           const maxRetries = 2
 
@@ -399,40 +398,52 @@ const ImageConverter = () => {
     })
   }
 
+  // Clear object URLs on unmount
+  useEffect(() => {
+    return () => {
+      convertedImages.forEach(img => {
+        if (img.convertedUrl) {
+          URL.revokeObjectURL(img.convertedUrl)
+        }
+      })
+    }
+  }, [convertedImages])
+
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen py-16 px-4 md:px-8">
+      <div className="max-w-4xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
-            <ImageIcon className="text-blue-600" size={40} />
-            Image Converter
+        <div className="text-center mb-12 animate-fade-in">
+          <div className="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-blue-500/15">
+            <ImageIcon className="w-3.5 h-3.5" />
+            Developer Tools
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+            Image Format Converter
           </h1>
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Convert multiple images to different formats quickly and easily.
-            Upload any number of images and convert them to JPG, PNG, or WebP format.
+          <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Convert multiple images to modern formats instantly. Bulk upload files, select options, and compile them into ZIP archives with ease.
           </p>
         </div>
 
         {/* Main Converter Card */}
-        <div className="bg-background rounded-xl shadow-lg border border-foreground/20 p-6 md:p-8">
+        <div className="glass rounded-3xl border border-slate-200/50 dark:border-slate-800/40 p-6 md:p-10 shadow-xl shadow-slate-100/30 dark:shadow-none relative">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl pointer-events-none -z-10"></div>
 
           {/* File Upload Section */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
-              <Upload size={24} />
-              Upload Images
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
+              <Upload size={20} className="text-blue-600 dark:text-blue-400" />
+              1. Upload Images
             </h2>
-
-
 
             {/* Main Drag and Drop Area */}
             <div
               className={`
-                border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300
+                border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all duration-300 relative group
                 ${isDragOver
-                  ? 'border-blue-600 bg-blue-50'
-                  : 'border-foreground/30 hover:border-blue-600 hover:bg-foreground/5'
+                  ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-950/15'
+                  : 'border-slate-350 dark:border-slate-800 hover:border-blue-500/50 hover:bg-slate-50/30 dark:hover:bg-slate-900/10'
                 }
               `}
               onDragOver={handleDragOver}
@@ -440,21 +451,23 @@ const ImageConverter = () => {
               onDrop={handleDrop}
               onClick={handleUploadAreaClick}
             >
-              <FileImage size={48} className="mx-auto text-foreground/40 mb-4" />
-              <p className="text-lg font-medium text-foreground mb-2">
+              <div className="p-4 rounded-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <FileImage size={32} className="text-blue-600 dark:text-blue-400" />
+              </div>
+              <p className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
                 {selectedFiles.length > 0
                   ? `${selectedFiles.length} image${selectedFiles.length > 1 ? 's' : ''} selected`
-                  : 'Drop your images here or click to browse'
+                  : 'Drag & drop images here, or browse files'
                 }
               </p>
-              <p className="text-sm text-foreground/60 mb-2">
-                Supports: JPG, PNG, WebP, GIF, BMP, TIFF (Max 10MB per file, 100 files max)
+              <p className="text-xs text-slate-400 dark:text-slate-500 mb-2">
+                Supports JPG, PNG, WebP, GIF, BMP, TIFF (Up to 100MB per file)
               </p>
-              <p className="text-xs text-foreground/50">
-                Click to choose between uploading files or entire folders
-              </p>
+              <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 underline">
+                Browse Files
+              </span>
 
-              {/* Hidden file inputs */}
+              {/* Hidden file input */}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -465,24 +478,24 @@ const ImageConverter = () => {
               />
             </div>
 
-            {/* Selected Files Display */}
+            {/* Selected Files Grid */}
             {selectedFiles.length > 0 && (
-              <div className="mt-6 p-4 rounded border-2 border-foreground/20">
-                <div className="flex items-center gap-2 text-foreground/70 mb-3">
-                  <CheckCircle2 size={20} />
-                  <span className="font-medium">Selected Files ({selectedFiles.length}):</span>
+              <div className="mt-6 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-850 bg-slate-50/50 dark:bg-slate-950/10 animate-fade-in">
+                <div className="flex items-center gap-2 text-slate-755 dark:text-slate-300 mb-3">
+                  <CheckCircle2 size={18} className="text-green-500" />
+                  <span className="text-sm font-bold">Selected Files ({selectedFiles.length}):</span>
                 </div>
-                <div className="max-h-40 overflow-y-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="max-h-48 overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {selectedFiles.slice(0, 10).map((file, index) => (
-                      <div key={index} className="text-sm text-foreground/70 px-3 py-2 rounded border-2 border-foreground/20">
-                        <p className="font-medium truncate">{file.name}</p>
-                        <p className="text-xs text-foreground/60">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                      <div key={index} className="text-xs flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-850 bg-white dark:bg-slate-900/60 text-slate-700 dark:text-slate-350">
+                        <span className="font-semibold truncate max-w-[70%] text-slate-800 dark:text-slate-205">{file.name}</span>
+                        <span className="text-slate-400 dark:text-slate-500 font-bold shrink-0">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
                       </div>
                     ))}
                   </div>
                   {selectedFiles.length > 10 && (
-                    <p className="text-sm text-foreground/70 mt-2">
+                    <p className="text-xs text-slate-405 dark:text-slate-500 mt-3 text-center">
                       ... and {selectedFiles.length - 10} more files
                     </p>
                   )}
@@ -492,21 +505,21 @@ const ImageConverter = () => {
           </div>
 
           {/* Format Selection Section */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
-              <Settings size={24} />
-              Output Format
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
+              <Settings size={20} className="text-blue-600 dark:text-blue-400" />
+              2. Select Target Format
             </h2>
 
-            {/* Format Selection Radio Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Format Selection Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {['webp', 'jpg', 'png'].map((format) => (
                 <label key={format} className="cursor-pointer">
                   <div className={`
-                    p-4 rounded-lg border-2 transition-all duration-300
+                    p-5 rounded-2xl border transition-all duration-300 flex flex-col items-center gap-2 bg-white dark:bg-slate-900/60
                     ${targetFormat === format
-                      ? 'border-blue-600'
-                      : 'border-foreground/20 hover:border-blue-300'
+                      ? 'border-blue-600 dark:border-blue-500 shadow-md shadow-blue-500/5'
+                      : 'border-slate-200 dark:border-slate-850 hover:border-blue-500/30'
                     }
                   `}>
                     <input
@@ -517,16 +530,14 @@ const ImageConverter = () => {
                       onChange={(e) => setTargetFormat(e.target.value)}
                       className="sr-only"
                     />
-                    <div className="text-center">
-                      <div className="text-lg font-semibold text-foreground uppercase">
-                        {format}
-                      </div>
-                      <div className="text-sm text-foreground/70 mt-1">
-                        {format === 'webp' && 'Best compression, modern format'}
-                        {format === 'jpg' && 'Universal support, smaller files'}
-                        {format === 'png' && 'Lossless quality, transparency support'}
-                      </div>
-                    </div>
+                    <span className={`text-xl font-black uppercase ${targetFormat === format ? 'text-blue-600 dark:text-blue-400' : 'text-slate-800 dark:text-slate-200'}`}>
+                      {format}
+                    </span>
+                    <span className="text-xs text-center text-slate-400 dark:text-slate-500">
+                      {format === 'webp' && 'Best size & quality'}
+                      {format === 'jpg' && 'Universal standard'}
+                      {format === 'png' && 'Lossless & transparency'}
+                    </span>
                   </div>
                 </label>
               ))}
@@ -539,26 +550,28 @@ const ImageConverter = () => {
               onClick={handleBatchConvert}
               disabled={selectedFiles.length === 0 || isConverting}
               className={`
-                flex-1 py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 cursor-pointer
+                flex-grow py-3.5 px-6 rounded-xl font-bold text-white transition-all duration-300 transform active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2
                 ${selectedFiles.length === 0 || isConverting
-                  ? 'bg-foreground/40 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
+                  ? 'bg-slate-200 dark:bg-slate-800/80 text-slate-400 dark:text-slate-600 cursor-not-allowed transform-none'
+                  : 'bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/10 hover:scale-[1.01]'
                 }
               `}
             >
               {isConverting ? (
-                <span className="flex items-center justify-center gap-2">
+                <>
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
                   Converting... {Math.round(conversionProgress)}%
-                </span>
+                </>
               ) : (
-                `Convert ${selectedFiles.length} Image${selectedFiles.length > 1 ? 's' : ''}`
+                <>
+                  Convert {selectedFiles.length} Image{selectedFiles.length > 1 ? 's' : ''}
+                </>
               )}
             </button>
 
             <button
               onClick={handleReset}
-              className="flex-1 sm:flex-none py-3 px-6 rounded-lg font-semibold text-foreground bg-foreground/10 hover:bg-foreground/20 transition-all duration-300 cursor-pointer"
+              className="py-3.5 px-6 rounded-xl font-bold text-slate-705 dark:text-slate-350 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 transition-all duration-300 cursor-pointer"
             >
               Reset
             </button>
@@ -567,9 +580,9 @@ const ImageConverter = () => {
           {/* Progress Bar */}
           {isConverting && (
             <div className="mb-6">
-              <div className="w-full bg-foreground/20 rounded-full h-2">
+              <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-200/10">
                 <div
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-blue-650 h-full rounded-full transition-all duration-350"
                   style={{ width: `${conversionProgress}%` }}
                 ></div>
               </div>
@@ -578,84 +591,77 @@ const ImageConverter = () => {
 
           {/* Status Messages */}
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <div className="flex items-center gap-2 text-red-800">
-                <AlertCircle size={20} />
-                <span className="font-medium">Error:</span>
+            <div className="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-950/20 text-red-800 dark:text-red-400 border border-red-200/50 dark:border-red-900/30 animate-fade-in">
+              <div className="flex items-center gap-2 font-bold mb-1">
+                <AlertCircle size={18} className="shrink-0" />
+                <span>Conversion Error</span>
               </div>
-              <p className="mt-1 text-red-700">{error}</p>
+              <p className="text-xs leading-relaxed">{error}</p>
             </div>
           )}
 
           {success && (
-            <div className="mb-6 p-4 border-2 border-foreground/20 rounded-lg">
-              <div className="flex items-center gap-2 text-foreground/70">
-                <CheckCircle2 size={20} />
-                <span className="font-medium">Success:</span>
+            <div className="mb-6 p-4 rounded-xl bg-green-50 dark:bg-green-950/20 text-green-805 dark:text-green-400 border border-green-200/50 dark:border-green-900/30 animate-fade-in">
+              <div className="flex items-center gap-2 font-bold mb-1">
+                <CheckCircle2 size={18} className="shrink-0" />
+                <span>Conversion Complete</span>
               </div>
-              <p className="mt-1 text-foreground/70">{success}</p>
+              <p className="text-xs leading-relaxed">{success}</p>
             </div>
           )}
 
-          {/* Download Section */}
+          {/* Download Box */}
           {convertedImages.length > 0 && (
-            <div className="bg-foreground/5 rounded-lg p-6 border border-foreground/20">
-              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-                <Download size={24} />
-                Download Converted Images
+            <div className="bg-slate-50/50 dark:bg-slate-950/15 rounded-2xl p-6 border border-slate-200 dark:border-slate-800/80 mt-8 animate-fade-in">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <Download size={20} className="text-blue-600 dark:text-blue-400" />
+                3. Download Results
               </h3>
 
-              <div className="mb-4">
-                <p className="text-foreground/80">
-                  <strong>{convertedImages.length}</strong> image{convertedImages.length > 1 ? 's' : ''} successfully converted to <strong>{targetFormat.toUpperCase()}</strong> format.
-                </p>
-              </div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                Converted <strong>{convertedImages.length}</strong> image{convertedImages.length > 1 ? 's' : ''} to <strong>{targetFormat.toUpperCase()}</strong>. Download them individually or packaged together in a ZIP file.
+              </p>
 
-              {/* Conditional Download Options */}
+              {/* Conditional Download triggers */}
               {convertedImages.length < 5 ? (
-                // Less than 5 images: Show both individual and ZIP download options
-                <div className="space-y-4">
-                  {/* Individual Downloads */}
+                <div className="space-y-6">
+                  {/* Individual Buttons */}
                   <div>
-                    <h4 className="font-medium text-foreground mb-3">Download Individual Images:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Individual Download:</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {convertedImages.map((image, index) => (
                         <button
                           key={index}
                           onClick={() => handleSingleDownload(image)}
-                          className="flex items-center gap-2 py-2 px-3 bg-green-600 hover:bg-green-700 text-white rounded transition-all duration-300 text-sm cursor-pointer"
+                          className="flex items-center gap-2 py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition duration-200 text-xs font-bold cursor-pointer"
                         >
-                          <Download size={16} />
+                          <Download size={14} />
                           {image.originalName.split('.').slice(0, -1).join('.')}.{targetFormat}
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* ZIP Download Option */}
-                  <div className="border-t border-foreground/30 pt-4">
-                    <h4 className="font-medium text-foreground mb-3">Or download all as ZIP:</h4>
+                  {/* ZIP triggers */}
+                  <div className="border-t border-slate-200 dark:border-slate-800 pt-5">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Package Download:</h4>
                     <button
                       onClick={handleZipDownload}
-                      className="cursor-pointer flex items-center gap-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+                      className="flex items-center gap-2 py-3 px-5 bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-300 shadow-md shadow-blue-500/10 cursor-pointer animate-pulse"
                     >
-                      <Archive size={20} />
-                      Download ZIP ({convertedImages.length} images)
+                      <Archive size={18} />
+                      Download ZIP Archive ({convertedImages.length} files)
                     </button>
                   </div>
                 </div>
               ) : (
-                // 5 or more images: Show only ZIP download option
                 <div>
-                  <p className="text-foreground/70 mb-4">
-                    With {convertedImages.length} images, we recommend downloading them as a ZIP file for convenience.
-                  </p>
                   <button
                     onClick={handleZipDownload}
-                    className="flex items-center gap-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+                    className="flex items-center gap-2 py-3.5 px-6 bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-300 shadow-md shadow-blue-500/10 cursor-pointer"
                   >
-                    <Archive size={20} />
-                    Download ZIP ({convertedImages.length} images)
+                    <Archive size={18} />
+                    Download ZIP Archive ({convertedImages.length} files)
                   </button>
                 </div>
               )}
@@ -663,11 +669,9 @@ const ImageConverter = () => {
           )}
         </div>
 
-        {/* Footer Information */}
-        <div className="mt-8 text-center text-foreground/60">
-          <p className="text-sm">
-            All processing is done securely. Your images are processed on our servers and not permanently stored.
-          </p>
+        {/* Footer Notes */}
+        <div className="mt-8 text-center text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
+          All image processes are run completely on-demand. Uploaded contents are temporarily processed and are never saved or kept permanently.
         </div>
       </div>
     </div>

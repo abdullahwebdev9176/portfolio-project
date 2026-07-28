@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
+import { Atom, Layers, Figma, Wind } from 'lucide-react'
 import BlueFilledBtn from '../Buttons/BlueFilledBtn'
 import BlueOutlineBtn from '../Buttons/BlueOutlineBtn'
 
@@ -100,6 +101,27 @@ const HeroSection = () => {
                 )}
               </div>
             </div>
+
+            {/* Floating Tech Badges */}
+            {/* Top Left - React */}
+            <div className="absolute -top-4 -left-4 z-20 p-3 rounded-2xl glass border border-blue-500/30 text-blue-550 shadow-lg animate-float-slow">
+              <Atom className="w-6 h-6 animate-spin" style={{ animationDuration: '10s' }} />
+            </div>
+
+            {/* Top Right - Next.js */}
+            <div className="absolute -top-2 -right-4 z-20 p-3 rounded-2xl glass border border-slate-500/30 text-slate-800 dark:text-white shadow-lg animate-float-medium">
+              <Layers className="w-6 h-6" />
+            </div>
+
+            {/* Bottom Left - Figma */}
+            <div className="absolute -bottom-2 -left-6 z-20 p-3 rounded-2xl glass border border-purple-500/30 text-purple-500 shadow-lg animate-float-fast">
+              <Figma className="w-6 h-6" />
+            </div>
+
+            {/* Bottom Right - Tailwind */}
+            <div className="absolute -bottom-4 -right-4 z-20 p-3 rounded-2xl glass border border-cyan-500/30 text-cyan-500 shadow-lg animate-float-slow">
+              <Wind className="w-6 h-6" />
+            </div>
           </div>
         </div>
 
@@ -108,4 +130,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default HeroSection

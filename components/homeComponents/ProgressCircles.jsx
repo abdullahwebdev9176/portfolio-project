@@ -45,7 +45,7 @@ const ProgressCircles = () => {
         const strokeDashoffset = circumference - (percentage / 100) * circumference
 
         return (
-            <div className={`flex flex-col items-center bg-white dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/40 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/30 transition-all duration-500 transform ${
+            <div className={`group flex flex-col items-center bg-white dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/40 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/30 hover:-translate-y-1.5 transition-all duration-500 transform ${
                 isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
             }`}>
                 <div className="relative w-32 h-32 mb-4 flex items-center justify-center">
@@ -71,24 +71,24 @@ const ProgressCircles = () => {
                             strokeDasharray={circumference}
                             strokeDashoffset={strokeDashoffset}
                             strokeLinecap="round"
-                            className="transition-all duration-300 ease-out"
+                            className="transition-all duration-500 ease-out origin-center group-hover:stroke-[8.5px] group-hover:scale-[1.03] skill-ring-glow"
                             style={{ 
-                                filter: `drop-shadow(0 0 6px ${skill.color}50)`
+                                '--skill-color-glow': `${skill.color}80`,
                             }}
                         />
                     </svg>
                     {/* Inner Content (Percentage & Icon) */}
                     <div className="absolute flex flex-col items-center justify-center gap-0.5">
-                        <span className="text-2xl font-black text-slate-800 dark:text-white">
+                        <span className="text-2xl font-black text-slate-800 dark:text-white transition-transform duration-300 group-hover:scale-105">
                             {percentage}%
                         </span>
-                        <div className="p-1.5 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700">
+                        <div className="p-1.5 rounded-full bg-slate-55 dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                             {skill.icon}
                         </div>
                     </div>
                 </div>
                 {/* Skill Title info */}
-                <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 text-center">
+                <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 text-center transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     {skill.name}
                 </h3>
             </div>
