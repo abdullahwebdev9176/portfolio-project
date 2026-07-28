@@ -38,14 +38,7 @@ const ProjectSection = () => {
             image: assets.cstats,
             link: "https://cstats.io/",
             tags: ["React", "Chart.js", "Tailwind CSS", "API Integration"]
-        },
-        {
-            title: "Trip Advisor Concept",
-            desc: "A responsive travel advisor layout with search listings, custom map markers, and booking flows.",
-            image: assets.tripAdvisorImg,
-            link: "https://www.tripadvisor.com/",
-            tags: ["React", "Maps API", "CSS Grid", "Lucide Icons"]
-        },
+        }
     ];
 
     const filteredProjects = projects.filter(project => {
