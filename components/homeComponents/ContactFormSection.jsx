@@ -1,9 +1,8 @@
-
 'use client'
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Mail, Phone, MapPin, Send, User, MessageSquare } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, User, MessageSquare, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 const ContactFormSection = () => {
@@ -35,74 +34,83 @@ const ContactFormSection = () => {
     }
 
     return (
-        <section className="py-16 px-4">
+        <section id="contact" className="py-24 px-4 md:px-8 border-t border-slate-200/50 dark:border-slate-800/50 scroll-mt-20">
             <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                    <div className="text-center mt-14 mb-5">
-                        <h2 className="text-2xl md:text-4xl font-bold">Get in Touch</h2>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-                        Have a project in mind? Let's discuss how we can bring your ideas to life.
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Get in Touch</h2>
+                    <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 rounded-full mx-auto mt-4 mb-5"></div>
+                    <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+                        Have a project in mind, want to collaborate, or have a job opportunity? Let's discuss it!
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    {/* Contact Info */}
-                    <div className="space-y-8">
-                        <div className='text-center text-lg-left'>
-                            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+                <div className="grid lg:grid-cols-12 gap-12 items-start">
+                    {/* Left Column: Contact Cards */}
+                    <div className="lg:col-span-5 space-y-8">
+                        <div className="text-center lg:text-left">
+                            <span className="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-blue-550/15">
+                                <Sparkles className="w-3.5 h-3.5" />
                                 Let's Connect
+                            </span>
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                                Start a Conversation
                             </h3>
-                            <p className="text-gray-600 dark:text-gray-300 mb-8">
-                                I'm always excited to work on new projects and collaborate with amazing people.
-                                Drop me a message and let's create something extraordinary together.
+                            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
+                                I'm always open to discussing new web development projects, UI design challenges, full-time engineering roles, or volunteer opportunities. Write to me, and let's build something awesome.
                             </p>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--cardBg)]">
-                                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                                    <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        {/* Contact Channels Grid */}
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-4 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/50 bg-white dark:bg-slate-900/50 hover:border-blue-500/25 transition-all duration-300 shadow-xs">
+                                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 dark:bg-blue-950/50 rounded-xl flex items-center justify-center border border-blue-105/10">
+                                    <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                 </div>
-                                <div>
-                                    <p className="font-medium text-gray-900 dark:text-white">Email</p>
-                                    <p className="text-gray-600 dark:text-gray-300">abdullahverse9176@gmail.com</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--cardBg)]">
-                                <div className="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                                    <Phone className="w-6 h-6 text-green-600 dark:text-green-400" />
-                                </div>
-                                <div>
-                                    <p className="font-medium text-gray-900 dark:text-white">Phone</p>
-                                    <p className="text-gray-600 dark:text-gray-300"><Link href="tel:+923460779176">+92 346 0779176</Link></p>
+                                <div className="text-left">
+                                    <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Email</p>
+                                    <a href="mailto:abdullahverse9176@gmail.com" className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        abdullahverse9176@gmail.com
+                                    </a>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--cardBg)]">
-                                <div className="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                                    <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                            <div className="flex items-center gap-4 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/50 bg-white dark:bg-slate-900/50 hover:border-blue-500/25 transition-all duration-300 shadow-xs">
+                                <div className="flex-shrink-0 w-12 h-12 bg-emerald-50 dark:bg-emerald-950/50 rounded-xl flex items-center justify-center border border-emerald-105/10">
+                                    <Phone className="w-5 h-5 text-emerald-600 dark:text-emerald-450" />
                                 </div>
-                                <div>
-                                    <p className="font-medium text-gray-900 dark:text-white">Location</p>
-                                    <p className="text-gray-600 dark:text-gray-300">Islamabad, Pakistan</p>
+                                <div className="text-left">
+                                    <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Phone</p>
+                                    <Link href="tel:+923460779176" className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        +92 346 0779176
+                                    </Link>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/50 bg-white dark:bg-slate-900/50 hover:border-blue-500/25 transition-all duration-300 shadow-xs">
+                                <div className="flex-shrink-0 w-12 h-12 bg-purple-50 dark:bg-purple-950/50 rounded-xl flex items-center justify-center border border-purple-105/10">
+                                    <MapPin className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Location</p>
+                                    <p className="text-base font-semibold text-slate-800 dark:text-slate-200">
+                                        Islamabad, Pakistan
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
-                    <div className="bg-[var(--cardBg)] rounded-2xl shadow-xl p-8">
+                    {/* Right Column: Glassmorphic Feedback Form */}
+                    <div className="lg:col-span-7 bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 rounded-3xl p-8 md:p-10 shadow-xl shadow-slate-100/50 dark:shadow-none">
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             {/* Name Field */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                     Full Name *
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                        <User className="h-5 w-5 text-gray-400" />
+                                        <User className="h-5 w-5 text-slate-400 dark:text-slate-650" />
                                     </div>
                                     <input
                                         type="text"
@@ -113,15 +121,15 @@ const ContactFormSection = () => {
                                                 message: 'Name must be at least 2 characters'
                                             }
                                         })}
-                                        className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none focus:box-shadow-none ${errors.name
+                                        className={`w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-950 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none text-slate-900 dark:text-white ${errors.name
                                                 ? 'border-red-500 focus:ring-red-500'
-                                                : 'border-gray-300 dark:border-gray-600'
+                                                : 'border-slate-200 dark:border-slate-800/80'
                                             }`}
                                         placeholder="Enter your full name"
                                     />
                                 </div>
                                 {errors.name && (
-                                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                    <p className="mt-2 text-xs text-red-500">
                                         {errors.name.message}
                                     </p>
                                 )}
@@ -129,12 +137,12 @@ const ContactFormSection = () => {
 
                             {/* Email Field */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                     Email Address *
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                        <Mail className="h-5 w-5 text-gray-400" />
+                                        <Mail className="h-5 w-5 text-slate-400 dark:text-slate-655" />
                                     </div>
                                     <input
                                         type="email"
@@ -145,15 +153,15 @@ const ContactFormSection = () => {
                                                 message: 'Invalid email address'
                                             }
                                         })}
-                                        className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none focus:box-shadow-none ${errors.email
+                                        className={`w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-950 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none text-slate-900 dark:text-white ${errors.email
                                                 ? 'border-red-500 focus:ring-red-500'
-                                                : 'border-gray-300 dark:border-gray-600'
+                                                : 'border-slate-200 dark:border-slate-800/80'
                                             }`}
                                         placeholder="Enter your email address"
                                     />
                                 </div>
                                 {errors.email && (
-                                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                    <p className="mt-2 text-xs text-red-500">
                                         {errors.email.message}
                                     </p>
                                 )}
@@ -161,25 +169,25 @@ const ContactFormSection = () => {
 
                             {/* Subject Field */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                     Subject
                                 </label>
                                 <input
                                     type="text"
                                     {...register('subject')}
-                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none focus:box-shadow-none"
+                                    className="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:outline-none text-slate-900 dark:text-white"
                                     placeholder="What's this about?"
                                 />
                             </div>
 
                             {/* Message Field */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                     Message *
                                 </label>
                                 <div className="relative">
-                                    <div className="absolute top-3 left-4 pointer-events-none">
-                                        <MessageSquare className="h-5 w-5 text-gray-400" />
+                                    <div className="absolute top-3.5 left-4 pointer-events-none">
+                                        <MessageSquare className="h-5 w-5 text-slate-400 dark:text-slate-655" />
                                     </div>
                                     <textarea
                                         {...register('message', {
@@ -190,15 +198,15 @@ const ContactFormSection = () => {
                                             }
                                         })}
                                         rows="5"
-                                        className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none focus:outline-none focus:box-shadow-none ${errors.message
+                                        className={`w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-950 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none focus:outline-none text-slate-900 dark:text-white ${errors.message
                                                 ? 'border-red-500 focus:ring-red-500'
-                                                : 'border-gray-300 dark:border-gray-600'
+                                                : 'border-slate-200 dark:border-slate-800/80'
                                             }`}
-                                        placeholder="Tell me about your project or idea..."
+                                        placeholder="Tell me about your project or opportunity..."
                                     />
                                 </div>
                                 {errors.message && (
-                                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                    <p className="mt-2 text-xs text-red-500">
                                         {errors.message.message}
                                     </p>
                                 )}
@@ -208,12 +216,12 @@ const ContactFormSection = () => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 cursor-pointer"
+                                className="w-full bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-550 hover:to-indigo-550 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.01] focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-500/10"
                             >
                                 {isSubmitting ? (
                                     <>
                                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                                        Sending...
+                                        Sending Message...
                                     </>
                                 ) : (
                                     <>
@@ -225,9 +233,9 @@ const ContactFormSection = () => {
 
                             {/* Success/Error Message */}
                             {submitMessage && (
-                                <div className={`p-4 rounded-xl text-center ${submitMessage.includes('successfully')
-                                        ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-400 border border-green-200 dark:border-green-800'
-                                        : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 border border-red-200 dark:border-red-800'
+                                <div className={`p-4 rounded-xl text-center text-sm font-semibold border ${submitMessage.includes('successfully')
+                                        ? 'bg-green-50 dark:bg-green-950/20 text-green-800 dark:text-green-405 border-green-200/50 dark:border-green-900/30'
+                                        : 'bg-red-50 dark:bg-red-950/20 text-red-800 dark:text-red-405 border-red-200/50 dark:border-red-900/30'
                                     }`}>
                                     {submitMessage}
                                 </div>
