@@ -22,10 +22,12 @@ Over the past two years, I have worked on **150+ websites** for clients in the m
 
 ## Tech Stack & Skills
 
-### **Frontend & UI Development**
+### **Frontend**
 - **React.js** & **Next.js**
 - **HTML5** & **JavaScript (ES6+)**
 - **Tailwind CSS** & **Bootstrap**
+- **JQuery**
+- **TypeScript**
 
 ### **State Management**
 - **Redux** & **Zustand**
@@ -35,7 +37,7 @@ Over the past two years, I have worked on **150+ websites** for clients in the m
 
 ---
 
-## Professional Experience & Highlights
+## Professional Experience
 
 ### **Vizz Web Solutions** (2 Years)
 *Web Developer*
@@ -44,7 +46,7 @@ Over the past two years, I have worked on **150+ websites** for clients in the m
 * Managed application state using **Redux** and **Zustand**.
 * Created responsive layouts using **Tailwind CSS** and **Bootstrap**.
 * Fixed bugs, added new features, and improved website performance.
-* Worked closely with designers and team members to deliver client requirements.
+* Worked with designers and team members to deliver client requirements.
 
 ---
 
