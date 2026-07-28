@@ -1,22 +1,26 @@
-# 🌊 Muhammad Abdullah
+# Muhammad Abdullah
 ### Frontend & Full-Stack Developer | Marine Industry Web Specialist
 
-Welcome to my profile! I am a passionate and results-driven Developer with over **2 years of professional experience** in crafting high-performance web applications. My expertise lies in designing interactive, responsive, and user-centric web solutions using modern JavaScript frameworks.
+I'm **Muhammad Abdullah**, a Frontend Developer with **2 years of professional experience** in web development.
+
+I enjoy building modern, responsive, and user-friendly websites using technologies like **React.js**, **Next.js**, **JavaScript, JQuery**, **Tailwind CSS**, and **Bootstrap**.
+
+Over the past two years, I have worked on **150+ live websites**, mainly for clients in the marine industry. During this time, I've gained experience developing new features, fixing bugs, improving website performance, and making websites more SEO-friendly.
 
 ---
 
-## 🚀 About Me
-- 🎓 **Education:** 
-  - 🖥️ Bachelor of Computer Science (BCS) - **Virtual University of Pakistan** *(In Progress)*
-  - 📚 Bachelor of Arts (BA)
-- 🏢 **Current/Past Role:** Software Engineer at **Vizz Web Solutions** (2+ Years)
-- ⛵ **Industry Expertise:** Specialized in the **Marine & Yachting Industry**
+## About Me
+- **Education:** 
+  - Bachelor of Computer Science (BCS) - **Virtual University of Pakistan** *(In Progress)*
+  - Bachelor of Arts (BA)
+- **Current/Past Role:** Software Engineer at **Vizz Web Solutions** (2+ Years)
+- **Industry Expertise:** Specialized in the **Marine & Yachting Industry**
   - Successfully built, optimized, and maintained **over 150 websites** in the marine domain.
   - Worked on high-profile projects like **[Strongs Marine](https://www.strongsmarine.com/)** and other major dealership platforms.
 
 ---
 
-## 🛠️ Tech Stack & Skills
+## Tech Stack & Skills
 
 ### **Frontend & UI Development**
 - **React.js** & **Next.js**
@@ -31,7 +35,7 @@ Welcome to my profile! I am a passionate and results-driven Developer with over 
 
 ---
 
-## 💼 Professional Experience & Highlights
+## Professional Experience & Highlights
 
 ### **Vizz Web Solutions** (2 Years)
 *Developer*
@@ -43,7 +47,7 @@ Welcome to my profile! I am a passionate and results-driven Developer with over 
 
 ---
 
-## 📈 Featured Marine Projects
+## Featured Marine Projects
 Having built over 150 marine industry sites, I specialize in:
 * **Boat/Yacht Inventory Search & Filters** (Optimized search UX)
 * **Custom Dealer Portal Integrations**
@@ -52,7 +56,7 @@ Having built over 150 marine industry sites, I specialize in:
 
 ---
 
-## 📫 Let's Connect!
+## Let's Connect!
 - **LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/yourusername)
 - **GitHub:** [Your GitHub Profile](https://github.com/yourusername)
 - **Email:** [your.email@example.com](mailto:your.email@example.com)
