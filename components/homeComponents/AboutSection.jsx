@@ -98,7 +98,7 @@ const AboutSection = () => {
                                     className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-350 cursor-pointer ${
                                         activeTab === idx
                                             ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-850'
+                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-black hover:bg-slate-300 dark:hover:bg-slate-850'
                                     }`}
                                 >
                                     {tab.label}
@@ -131,4 +131,4 @@ const AboutSection = () => {
     )
 }
 
-export default AboutSection
+export default AboutSection

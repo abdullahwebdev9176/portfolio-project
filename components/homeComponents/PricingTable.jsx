@@ -111,7 +111,7 @@ const PricingTable = () => {
                 className={`w-full py-3.5 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-[1.02] cursor-pointer ${
                   plan.popular
                     ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-blue-500/20"
-                    : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-800 dark:text-white"
+                    : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-400 dark:hover:bg-slate-750 text-slate-800 dark:text-white"
                 }`}
               >
                 Hire Me
