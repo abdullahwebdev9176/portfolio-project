@@ -17,7 +17,7 @@ export default function Home() {
         <OfferSection />
         <ProgressCircles />
         <ExperienceTimeline />
-        <PricingTable />
+        {/* <PricingTable /> */}
         <ProjectSection />
         <ContactFormSection />
       </main>
