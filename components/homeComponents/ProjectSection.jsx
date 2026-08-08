@@ -9,9 +9,58 @@ import Link from 'next/link'
 const ProjectSection = () => {
     const [activeFilter, setActiveFilter] = useState('All')
 
-    const filterCategories = ['All', 'Next.js', 'React', 'APIs']
+    const filterCategories = ['All', 'Marine & Yachting', 'Next.js', 'React', 'Shopify']
 
     const projects = [
+        {
+            title: "Strongs Marine",
+            desc: "Built the frontend and backend, developing multiple modules including inventory management, dealer listings, and search & filter functionality.",
+            image: assets.strongsMarine,
+            link: "https://www.strongsmarine.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
+        {
+            title: "Wake Works",
+            desc: "Built a Shopify e-commerce store with custom frontend and backend modules for product catalog, cart, and checkout.",
+            image: assets.wakeWorks,
+            link: "https://wakeworks.com/",
+            tags: ["Shopify", "Liquid", "JavaScript", "CSS"]
+        },
+        {
+            title: "Singleton Marine",
+            desc: "Built the frontend and backend, developing multiple modules including inventory management, boat listings, and an admin dashboard.",
+            image: assets.singletonMarine,
+            link: "https://singletonmarine.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
+        {
+            title: "Tobler Marina",
+            desc: "Built the frontend and backend, developing multiple modules including inventory management, dealership listings, and team management.",
+            image: assets.tobler,
+            link: "https://www.toblermarina.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
+        {
+            title: "Chelan Bay Marina",
+            desc: "Built the frontend and backend, developing multiple modules including inventory management and dealership listings.",
+            image: assets.chelanBay,
+            link: "https://chelanbaymarina.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
+        {
+            title: "Bay Marine Boats",
+            desc: "Built the complete frontend and backend, developing multiple modules including teams, tournament results, and careers.",
+            image: assets.bayMarine,
+            link: "https://www.baymarineboats.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
+        {
+            title: "Pocket Yacht Company",
+            desc: "Built the complete frontend and backend, developing multiple modules including teams and careers.",
+            image: assets.pocketYachtCompany,
+            link: "https://pocketyachtco.com/",
+            tags: ["Node.js", "APIs", "JQuery", "Bootstrap", "CSS"]
+        },
         {
             title: "Service Markaz",
             desc: "An on-demand home services marketplace platform connecting users with local service professionals.",
@@ -24,7 +73,7 @@ const ProjectSection = () => {
             desc: "A modern healthcare blogging platform with optimized performance, high readability, and clean typography.",
             image: assets.blogImg,
             link: "https://hafsa-health-blogger.vercel.app/",
-            tags: ["Next.js", "React", "Tailwind CSS", "Markdown"]
+            tags: ["Next.js", "React", "Tailwind CSS"]
         },
         {
             title: "AlKhidmet Website",
@@ -38,16 +87,18 @@ const ProjectSection = () => {
             desc: "A statistics and data analytics dashboard featuring real-time data charts and clean metrics filtering.",
             image: assets.cstats,
             link: "https://cstats.io/",
-            tags: ["React", "Chart.js", "Tailwind CSS", "API Integration"]
+            tags: ["React", "Tailwind CSS", "APIs"]
         }
     ];
 
     const filteredProjects = projects.filter(project => {
         if (activeFilter === 'All') return true;
+        if (activeFilter === 'Marine & Yachting') return project.tags.includes('Marine') || project.tags.includes('E-Commerce');
         if (activeFilter === 'Next.js') return project.tags.includes('Next.js');
         if (activeFilter === 'React') return project.tags.includes('React');
+        if (activeFilter === 'Shopify') return project.tags.includes('Shopify');
         if (activeFilter === 'APIs') {
-            return project.tags.some(tag => ['REST API', 'API Integration', 'Maps API'].includes(tag));
+            return project.tags.some(tag => ['REST API', 'API Integration', 'APIs', 'Maps API'].includes(tag));
         }
         return true;
     });
