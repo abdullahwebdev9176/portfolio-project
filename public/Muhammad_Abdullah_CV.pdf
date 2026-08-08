@@ -1,0 +1,110 @@
+%PDF-1.4
+1 0 obj
+<<
+  /Type /Catalog
+  /Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+  /Type /Pages
+  /Kids [3 0 R]
+  /Count 1
+>>
+endobj
+3 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /Resources <<
+    /Font <<
+      /F1 <<
+        /Type /Font
+        /Subtype /Type1
+        /BaseFont /Helvetica
+      >>
+    >>
+  >>
+  /MediaBox [0 0 612 792]
+  /Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+  /Length 1684
+>>
+stream
+BT
+/F1 18 Tf
+50 740 Td
+(Muhammad Abdullah) Tj
+/F1 11 Tf
+0 -22 Td
+(Full-Stack Web Developer | Marine Industry Web Specialist) Tj
+0 -18 Td
+(Email: abdullahverse9176@gmail.com | Portfolio: buildwithabdullah.vercel.app) Tj
+0 -15 Td
+(GitHub: github.com/abdullahverse9176 | LinkedIn: linkedin.com/in/muhammad-abdullah-3467b3202) Tj
+
+0 -35 Td
+/F1 13 Tf
+(PROFESSIONAL SUMMARY) Tj
+/F1 10 Tf
+0 -18 Td
+(Full-Stack Web Developer with expertise in React.js, Next.js, Node.js, Express, and Tailwind CSS.) Tj
+0 -14 Td
+(Specialized in building, customizing, and maintaining over 150+ websites in the marine & yachting industry.) Tj
+
+0 -30 Td
+/F1 13 Tf
+(WORK EXPERIENCE) Tj
+/F1 10 Tf
+0 -18 Td
+(Full Stack Web Developer - Vizz Web Solutions (2025 - Present)) Tj
+0 -14 Td
+(- Architecting, developing, and maintaining 150+ full-stack web applications for marine clients.) Tj
+0 -14 Td
+(- Tech Stack: React.js, Next.js, Node.js, Express, Redux, Zustand, Tailwind CSS, Bootstrap.) Tj
+
+0 -22 Td
+(Frontend Developer - Vizz Web Solutions (2024 - 2025)) Tj
+0 -14 Td
+(- Architected responsive web layouts, custom landing pages, and interactive UI components.) Tj
+
+0 -30 Td
+/F1 13 Tf
+(EDUCATION) Tj
+/F1 10 Tf
+0 -18 Td
+(BS in Computer Science (BSCS) - Virtual University of Pakistan, Islamabad (2022 - 2025)) Tj
+0 -14 Td
+(ICS (Intermediate in Computer Science) - Government Islamia College, Chiniot (2019 - 2021)) Tj
+
+0 -30 Td
+/F1 13 Tf
+(TECHNICAL SKILLS) Tj
+/F1 10 Tf
+0 -18 Td
+(Frontend: React.js, Next.js, JavaScript (ES6+), HTML5, Tailwind CSS, Bootstrap, JQuery, TypeScript) Tj
+0 -14 Td
+(Backend & State: Node.js, Express, Redux, Zustand) Tj
+0 -14 Td
+(Tools: VS Code, Git, GitHub, Figma, Chrome DevTools) Tj
+ET
+endstream
+endobj
+xref
+0 5
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000302 00000 n 
+trailer
+<<
+  /Size 5
+  /Root 1 0 R
+>>
+startxref
+2094
+%%EOF

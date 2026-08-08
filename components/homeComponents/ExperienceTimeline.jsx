@@ -8,7 +8,7 @@ const ExperienceTimeline = () => {
     {
       role: "Full Stack Web Developer",
       company: "Vizz Web Solutions",
-      duration: "2025 - 2026 - Present",
+      duration: "2025 - Present",
       desc: "Architecting, developing, and maintaining 150+ full-stack web applications for clients in the marine and yachting industry. Built modern interfaces using React.js, Next.js, Node.js, Express, Redux, Zustand, and Tailwind CSS.",
       icon: <Briefcase className="w-5 h-5 text-blue-500" />
     },

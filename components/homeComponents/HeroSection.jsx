@@ -64,7 +64,7 @@ const HeroSection = () => {
           {/* Action buttons */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-4">
             <BlueFilledBtn title="Hire Me" url="#contact" />
-            <BlueOutlineBtn title="Download CV" url="#about" />
+            <BlueOutlineBtn title="Download CV" url="/Muhammad_Abdullah_CV.pdf" download="Muhammad_Abdullah_CV.pdf" target="_blank" />
           </div>
 
           {/* Micro Tech Stack Badges */}
