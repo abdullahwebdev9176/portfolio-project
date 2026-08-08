@@ -44,7 +44,7 @@ const HeroSection = () => {
                   sequence={[
                     'Muhammad Abdullah',
                     2000,
-                    'A Web Developer',
+                    'Full Stack Web Developer',
                     2000,
                     'Figma to Code Expert',
                     2000,

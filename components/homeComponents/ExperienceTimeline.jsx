@@ -6,41 +6,34 @@ import { Briefcase, GraduationCap, Calendar, Sparkles } from 'lucide-react'
 const ExperienceTimeline = () => {
   const experiences = [
     {
-      role: "Lead Frontend Developer",
-      company: "Freelance / Remote Contracts",
-      duration: "2024 - Present",
-      desc: "Architecting responsive Next.js apps, leading UI designs from Figma drafts to pixel-perfect code, and optimizing Core Web Vitals to improve search ranking by 30%.",
+      role: "Full Stack Web Developer",
+      company: "Vizz Web Solutions",
+      duration: "2025 - 2026 - Present",
+      desc: "Architecting, developing, and maintaining 150+ full-stack web applications for clients in the marine and yachting industry. Built modern interfaces using React.js, Next.js, Node.js, Express, Redux, Zustand, and Tailwind CSS.",
       icon: <Briefcase className="w-5 h-5 text-blue-500" />
     },
     {
-      role: "Figma to React Expert",
-      company: "Software House Contracts",
-      duration: "2022 - 2024",
-      desc: "Delivered highly interactive dashboard interfaces, integrated custom charting solutions (CSTATS), and implemented robust CSS frameworks (Tailwind, Radix UI) for client projects.",
+      role: "Frontend Developer",
+      company: "Vizz Web Solutions",
+      duration: "2024 - 2025",
+      desc: "Architected responsive web layouts, custom landing pages, and interactive UI components using HTML, CSS, JavaScript, and Bootstrap.",
       icon: <Briefcase className="w-5 h-5 text-indigo-500" />
-    },
-    {
-      role: "Junior Web Developer",
-      company: "Digital Agency",
-      duration: "2021 - 2022",
-      desc: "Developed cross-browser compatible layouts, maintained legacy PHP/WordPress sites, and started migrating core projects to React.js to enhance speeds.",
-      icon: <Briefcase className="w-5 h-5 text-purple-500" />
     }
   ];
 
   const education = [
     {
-      degree: "BS in Computer Science",
-      school: "Comsats University Islamabad",
-      duration: "2020 - 2024",
-      desc: "Specialized in Software Engineering. Led multiple frontend projects in university hackathons and completed studies with a strong emphasis on algorithms, web systems, and databases.",
+      degree: "BS in Computer Science (BSCS)",
+      school: "Virtual University of Pakistan, Islamabad",
+      duration: "2022 - 2025",
+      desc: "Completed Bachelor's degree with specialization in Software Engineering & Web Systems. Focused on algorithms, database management, and modern full-stack web applications.",
       icon: <GraduationCap className="w-5 h-5 text-blue-500" />
     },
     {
-      degree: "FSc in Pre-Engineering",
-      school: "Punjab Group of Colleges",
-      duration: "2018 - 2020",
-      desc: "Studied core engineering disciplines: Mathematics, Physics, and Chemistry. Graduated with top marks and entry to top-tier national IT programs.",
+      degree: "ICS (Intermediate in Computer Science)",
+      school: "Government Islamia College, Chiniot",
+      duration: "2019 - 2021",
+      desc: "Studied Computer Science, Mathematics, and Physics. Built strong foundational programming logic and computer hardware/software concepts.",
       icon: <GraduationCap className="w-5 h-5 text-teal-500" />
     }
   ];
