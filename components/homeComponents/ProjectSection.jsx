@@ -9,7 +9,7 @@ import Link from 'next/link'
 const ProjectSection = () => {
     const [activeFilter, setActiveFilter] = useState('All')
 
-    const filterCategories = ['All', 'Marine & Yachting', 'Next.js', 'React', 'Shopify']
+    const filterCategories = ['All', 'Node.js', 'Next.js', 'React', 'Shopify']
 
     const projects = [
         {
@@ -66,7 +66,7 @@ const ProjectSection = () => {
             desc: "An on-demand home services marketplace platform connecting users with local service professionals.",
             image: assets.serviceMarkaz,
             link: "https://www.servicemarkaz.com/",
-            tags: ["React", "Node.js", "Tailwind CSS", "REST API"]
+            tags: ["Next.js", "React", "Tailwind CSS"]
         },
         {
             title: "Blog Website",
@@ -93,7 +93,7 @@ const ProjectSection = () => {
 
     const filteredProjects = projects.filter(project => {
         if (activeFilter === 'All') return true;
-        if (activeFilter === 'Marine & Yachting') return project.tags.includes('Marine') || project.tags.includes('E-Commerce');
+        if (activeFilter === 'Node.js') return project.tags.includes('Node.js');
         if (activeFilter === 'Next.js') return project.tags.includes('Next.js');
         if (activeFilter === 'React') return project.tags.includes('React');
         if (activeFilter === 'Shopify') return project.tags.includes('Shopify');
